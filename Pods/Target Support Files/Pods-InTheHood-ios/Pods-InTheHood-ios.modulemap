@@ -1,0 +1,6 @@
+framework module Pods_InTheHood_ios {
+  umbrella header "Pods-InTheHood-ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
