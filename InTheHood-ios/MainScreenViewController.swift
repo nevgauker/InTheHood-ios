@@ -9,30 +9,110 @@
 import UIKit
 import collection_view_layouts
 
+
+extension MainScreenViewController:UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField.tag == 0{
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createTitleBottomBorder.alpha = 1.0
+               
+            }, completion: { (finished: Bool) in
+            })
+        }
+        if textField.tag == 1{
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createPriceBottomBorder.alpha = 1.0
+                
+            }, completion: { (finished: Bool) in
+            })
+        }
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        self.createPriceTextField.resignFirstResponder()
+        
+        
+        if textField.tag == 0 {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createTitleBottomBorder.alpha = 0.0
+                
+            }, completion: { (finished: Bool) in
+            })
+        }
+        
+        if textField.tag == 1 {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createPriceBottomBorder.alpha = 0.0
+            }, completion: { (finished: Bool) in
+            })
+        }
+        
+        return true
+
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.createPriceTextField.resignFirstResponder()
+        self.createTitleTextField.resignFirstResponder()
+        if textField.tag == 0 {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createTitleBottomBorder.alpha = 0.0
+                
+            }, completion: { (finished: Bool) in
+            })
+        }
+        
+        if textField.tag == 1 {
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+                self.createPriceBottomBorder.alpha = 0.0
+            }, completion: { (finished: Bool) in
+            })
+        }
+        
+        return true
+    }
+}
 extension MainScreenViewController: ContentDynamicLayoutDelegate {
     func cellSize(indexPath: IndexPath) -> CGSize {
-         return cellsSizes[indexPath.row]
+        return cellsSizes[indexPath.row]
     }
 }
 
-
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellsSizes.count
+        if collectionView.tag == 0 {
+            return cellsSizes.count
+        }
+        return categories.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            var identifier = "itemCell"
+        
+        var identifier = "itemCell"
         if last == 2 {
             last = 1
         }else {
             last = 2
         }
+        
         identifier +=  String(last)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-            return cell
+        if  collectionView.tag == 1 {
+            identifier = "CategoryCell"
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        if  collectionView.tag == 1 {
+            let theCell = cell as! CategoryCell
+            theCell.categoryNamelabel.text = categories[indexPath.item]
+        }
+        
+        return cell
     }
 }
 
+extension MainScreenViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
 
 
 
@@ -44,8 +124,21 @@ class MainScreenViewController: UIViewController {
 
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var addBtn: UIButton!
+    
+    
+    let categories = ["aaaa", "abbb"]
 
 
+    @IBOutlet weak var createScrollView: UIScrollView!
+    
+    @IBOutlet weak var createUserAvatar: UIImageView!
+    
+    @IBOutlet weak var createTitleTextField: UITextField!
+    @IBOutlet weak var createTitleBottomBorder: UIView!
+    @IBOutlet weak var createPriceBottomBorder: UIView!
+
+    @IBOutlet weak var createCurrencyBtn: UIButton!
+    @IBOutlet weak var createPriceTextField: UITextField!
     
     
     var last = 2
@@ -142,4 +235,6 @@ class MainScreenViewController: UIViewController {
         
     }
     
+    @IBAction func didPressCreateCurrencyBtn(_ sender: Any) {
+    }
 }

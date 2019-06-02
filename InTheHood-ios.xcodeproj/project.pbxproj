@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,11 @@
 		DCE6FFE8229BCAE2003A6626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */; };
 		DCE6FFEB229BCAE2003A6626 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE9229BCAE2003A6626 /* LaunchScreen.storyboard */; };
 		DCE6FFF6229BCAE2003A6626 /* InTheHood_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6FFF5229BCAE2003A6626 /* InTheHood_iosTests.swift */; };
+		DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */; };
+		DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */; };
+		DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DE22A431C000D0E7AA /* CreateView.swift */; };
+		DCFB47E122A435B100D0E7AA /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */; };
+		DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47E222A435D700D0E7AA /* CategoryCell.swift */; };
 		F50BB524753F2A454E6EDC2F /* Pods_InTheHood_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362871004C1D86FD83D37EA /* Pods_InTheHood_iosUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +72,11 @@
 		DCE6FFF5229BCAE2003A6626 /* InTheHood_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheHood_iosTests.swift; sourceTree = "<group>"; };
 		DCE6FFF7229BCAE2003A6626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE6FFFC229BCAE2003A6626 /* InTheHood-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InTheHood-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSuperView.swift; sourceTree = "<group>"; };
+		DCFB47DE22A431C000D0E7AA /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
+		DCFB47E222A435D700D0E7AA /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +117,6 @@
 				1973457407498F8C823D03C5 /* Pods-InTheHood-iosUITests.debug.xcconfig */,
 				38325B9FDF7E490EA24B3CA6 /* Pods-InTheHood-iosUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -156,6 +165,11 @@
 				DC328D62229BE1BE00693E17 /* SignupViewController.swift */,
 				DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */,
 				DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */,
+				DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */,
+				DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */,
+				DCFB47DE22A431C000D0E7AA /* CreateView.swift */,
+				DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */,
+				DCFB47E222A435D700D0E7AA /* CategoryCell.swift */,
 			);
 			path = "InTheHood-ios";
 			sourceTree = "<group>";
@@ -400,11 +414,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE6FFE3229BCAE1003A6626 /* ViewController.swift in Sources */,
+				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
+				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
 				DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */,
 				DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */,
+				DCFB47E122A435B100D0E7AA /* CategoriesCollectionView.swift in Sources */,
 				DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
+				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
+				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@ target 'InTheHood-ios' do
   use_frameworks!
 
 	pod 'collection-view-layouts/PinterestLayout'
+	pod 'Alamofire'
 
   # Pods for InTheHood-ios
 
