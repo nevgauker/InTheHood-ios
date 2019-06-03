@@ -12,10 +12,12 @@
 		DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D60229BD6E200693E17 /* SigninViewController.swift */; };
 		DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D62229BE1BE00693E17 /* SignupViewController.swift */; };
 		DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */; };
+		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
+		DCA8B20222A50F640060E1A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20122A50F640060E1A7 /* Item.swift */; };
+		DCA8B20422A50F700060E1A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20322A50F700060E1A7 /* User.swift */; };
 		DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */; };
 		DCE60001229BCAE2003A6626 /* InTheHood_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE60000229BCAE2003A6626 /* InTheHood_iosUITests.swift */; };
 		DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */; };
-		DCE6FFE3229BCAE1003A6626 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6FFE2229BCAE1003A6626 /* ViewController.swift */; };
 		DCE6FFE6229BCAE1003A6626 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE4229BCAE1003A6626 /* Main.storyboard */; };
 		DCE6FFE8229BCAE2003A6626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */; };
 		DCE6FFEB229BCAE2003A6626 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE9229BCAE2003A6626 /* LaunchScreen.storyboard */; };
@@ -58,12 +60,14 @@
 		DC328D60229BD6E200693E17 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		DC328D62229BE1BE00693E17 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		DCA8B20122A50F640060E1A7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		DCA8B20322A50F700060E1A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		DCE60000229BCAE2003A6626 /* InTheHood_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheHood_iosUITests.swift; sourceTree = "<group>"; };
 		DCE60002229BCAE2003A6626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE6FFDD229BCAE1003A6626 /* InTheHood-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InTheHood-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCE6FFE2229BCAE1003A6626 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCE6FFE5229BCAE1003A6626 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE6FFEA229BCAE2003A6626 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,6 +134,61 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DCA8B1F722A5067C0060E1A7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DCA8B1FB22A507040060E1A7 /* GeneralViews */,
+				DCA8B1F922A506DA0060E1A7 /* Main */,
+				DCA8B1F822A506CB0060E1A7 /* SignInUp */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DCA8B1F822A506CB0060E1A7 /* SignInUp */ = {
+			isa = PBXGroup;
+			children = (
+				DC328D60229BD6E200693E17 /* SigninViewController.swift */,
+				DC328D62229BE1BE00693E17 /* SignupViewController.swift */,
+			);
+			path = SignInUp;
+			sourceTree = "<group>";
+		};
+		DCA8B1F922A506DA0060E1A7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DCA8B1FA22A506E80060E1A7 /* Views */,
+				DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DCA8B1FA22A506E80060E1A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DCFB47DE22A431C000D0E7AA /* CreateView.swift */,
+				DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */,
+				DCFB47E222A435D700D0E7AA /* CategoryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DCA8B1FB22A507040060E1A7 /* GeneralViews */ = {
+			isa = PBXGroup;
+			children = (
+				DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */,
+			);
+			path = GeneralViews;
+			sourceTree = "<group>";
+		};
+		DCA8B1FE22A50EFB0060E1A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCA8B20122A50F640060E1A7 /* Item.swift */,
+				DCA8B20322A50F700060E1A7 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DCE6FFD4229BCAE1003A6626 = {
 			isa = PBXGroup;
 			children = (
@@ -155,21 +214,16 @@
 		DCE6FFDF229BCAE1003A6626 /* InTheHood-ios */ = {
 			isa = PBXGroup;
 			children = (
+				DCA8B1FE22A50EFB0060E1A7 /* Model */,
+				DCA8B1F722A5067C0060E1A7 /* ViewControllers */,
 				DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */,
-				DCE6FFE2229BCAE1003A6626 /* ViewController.swift */,
 				DCE6FFE4229BCAE1003A6626 /* Main.storyboard */,
 				DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */,
 				DCE6FFE9229BCAE2003A6626 /* LaunchScreen.storyboard */,
 				DCE6FFEC229BCAE2003A6626 /* Info.plist */,
-				DC328D60229BD6E200693E17 /* SigninViewController.swift */,
-				DC328D62229BE1BE00693E17 /* SignupViewController.swift */,
 				DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */,
-				DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */,
 				DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */,
-				DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */,
-				DCFB47DE22A431C000D0E7AA /* CreateView.swift */,
-				DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */,
-				DCFB47E222A435D700D0E7AA /* CategoryCell.swift */,
+				DCA8B1FC22A509930060E1A7 /* Utils.swift */,
 			);
 			path = "InTheHood-ios";
 			sourceTree = "<group>";
@@ -413,14 +467,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE6FFE3229BCAE1003A6626 /* ViewController.swift in Sources */,
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
 				DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */,
 				DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */,
 				DCFB47E122A435B100D0E7AA /* CategoriesCollectionView.swift in Sources */,
+				DCA8B20422A50F700060E1A7 /* User.swift in Sources */,
 				DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */,
+				DCA8B20222A50F640060E1A7 /* Item.swift in Sources */,
+				DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
 				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,

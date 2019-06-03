@@ -9,27 +9,43 @@
 import UIKit
 
 class API: NSObject {
-    let baseURL = ""
+    let baseURLDEV = "http://localhost:3004"
+    let baseURLPROD = ""
+    let defaultHeaders:[String: String] = [String :  String]()
 }
 
 
 class NetworkingManager: NSObject {
     
+    var THE_API:API!
+    let baseURL: URL?
+    var categories:[String]?
+    
     private static var sharedNetworkManager: NetworkingManager = {
-        let url =  URL(string: "")
-        let networkManager = NetworkingManager(baseURL: url!)
+        let THE_API  = API()
+        let networkManager = NetworkingManager(api: THE_API)
         return networkManager
     }()
     
-    let baseURL: URL
-    
-    
-    private init(baseURL: URL) {
-        self.baseURL = baseURL
+    private init(api: API) {
+        self.THE_API = api
+        
+        var urlStr =  THE_API.baseURLPROD
+        if Utils.IsDevelopment() {
+            urlStr = THE_API.baseURLDEV
+        }
+        baseURL = URL(string: urlStr)
     }
     
     class func shared() -> NetworkingManager {
         return sharedNetworkManager
+    }
+    
+    
+    func getCategories() {
+        
+        
+
     }
 
 
