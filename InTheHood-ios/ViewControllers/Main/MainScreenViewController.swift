@@ -9,6 +9,15 @@
 import UIKit
 import collection_view_layouts
 
+extension MainScreenViewController:UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                    layout collectionViewLayout: UICollectionViewLayout,
+                    sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100.0, height: 45.0)
+    }
+}
+
 
 extension MainScreenViewController:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -83,7 +92,11 @@ extension MainScreenViewController: UICollectionViewDataSource {
         if collectionView.tag == 0 {
             return cellsSizes.count
         }
-        return categories.count
+        
+        if let categories = NetworkingManager.shared().categories {
+            return categories.count
+        }
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -101,7 +114,11 @@ extension MainScreenViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if  collectionView.tag == 1 {
             let theCell = cell as! CategoryCell
-            theCell.categoryNamelabel.text = categories[indexPath.item]
+            if let categories = NetworkingManager.shared().categories {
+                theCell.categoryNamelabel.text = categories[indexPath.item]
+            }
+            
+            
         }
         
         return cell
@@ -126,6 +143,7 @@ class MainScreenViewController: UIViewController {
     @IBOutlet weak var addBtn: UIButton!
     
     
+    @IBOutlet weak var categoriesCollection: CategoriesCollectionView!
     let categories = ["aaaa", "abbb"]
 
 
@@ -157,7 +175,6 @@ class MainScreenViewController: UIViewController {
         cellsSizes.append(size2)
         cellsSizes.append(size3)
         cellsSizes.append(size4)
-
 
         
         
@@ -236,5 +253,36 @@ class MainScreenViewController: UIViewController {
     }
     
     @IBAction func didPressCreateCurrencyBtn(_ sender: Any) {
+        
+        // let locale = Locale.current
+        //let currencySymbol = locale.currencySymbol!
+        // let currencyCode = locale.currencyCode!
+        
+        createPriceTextField.resignFirstResponder()
+        createTitleTextField.resignFirstResponder()
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+            self.createPriceBottomBorder.alpha = 0.0
+            self.createTitleBottomBorder.alpha = 0.0
+        }, completion: { (finished: Bool) in
+           
+        })
+        
+        let alert = UIAlertController(title: "Currency", message: "Please Select an Option", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title:Utils.currenciesNames()[0] + " - " + Utils.currenciesStrings()[0], style: .default , handler:{ (UIAlertAction)in
+            print("User click Approve button")
+        }))
+        
+        alert.addAction(UIAlertAction(title: Utils.currenciesNames()[1] + " - " + Utils.currenciesStrings()[1], style: .default , handler:{ (UIAlertAction)in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            
+        })
     }
 }

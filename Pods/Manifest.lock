@@ -3,20 +3,24 @@ PODS:
   - collection-view-layouts/Core (0.1.2)
   - collection-view-layouts/PinterestLayout (0.1.2):
     - collection-view-layouts/Core
+  - CropViewController (2.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - collection-view-layouts/PinterestLayout
+  - CropViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - collection-view-layouts
+    - CropViewController
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
+  CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
 
-PODFILE CHECKSUM: 6e9127e60808f62612ef0ce57921ca20a29c78e8
+PODFILE CHECKSUM: 7e54ff0b6fc2753201b1cb556500e2581f670947
 
 COCOAPODS: 1.7.0

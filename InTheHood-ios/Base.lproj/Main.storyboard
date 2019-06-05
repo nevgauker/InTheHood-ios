@@ -121,6 +121,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8oC-x2-Fuz"/>
                     <connections>
                         <outlet property="emailBorder" destination="gee-YH-sMX" id="QVg-db-qW0"/>
                         <outlet property="emailTextField" destination="YbF-sA-64P" id="Rit-V5-QWd"/>
@@ -128,13 +129,13 @@
                         <outlet property="passwordBorder" destination="tWn-e4-6Cs" id="Rwc-BF-0dg"/>
                         <outlet property="passwordTextField" destination="I2g-Lc-1rR" id="n8a-Kk-YDe"/>
                         <outlet property="signinBtn" destination="gfJ-fs-WkD" id="030-4m-qLQ"/>
-                        <segue destination="Nwj-vg-GRJ" kind="show" identifier="signupSegue" id="36n-Pw-E27"/>
                         <segue destination="QF0-6O-EqF" kind="show" identifier="forgotPasswordSegue" id="06n-ab-hUZ"/>
+                        <segue destination="Nwj-vg-GRJ" kind="presentation" identifier="signupSegue" id="pIz-Vh-3uU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="nQk-yg-ppt">
@@ -233,6 +234,16 @@
                                             <constraint firstAttribute="width" constant="180" id="YFU-nl-9V1"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O70-Y7-6gU">
+                                        <rect key="frame" x="117" y="120" width="180" height="180"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="R8q-Uh-XDo"/>
+                                            <constraint firstAttribute="width" constant="180" id="yKE-AM-r4o"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="didPressSelectImage:" destination="Nwj-vg-GRJ" eventType="touchUpInside" id="uZD-xf-2WI"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBf-og-Yxv">
                                         <rect key="frame" x="97" y="339" width="220" height="30"/>
                                         <constraints>
@@ -241,7 +252,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="fCc-Iz-NiD"/>
                                         </connections>
@@ -262,7 +273,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="nKU-T5-wLO"/>
                                         </connections>
@@ -283,7 +294,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="4ZA-e3-eKh"/>
                                         </connections>
@@ -316,12 +327,14 @@
                                     <constraint firstItem="Mtk-0T-WQB" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="4Kf-hZ-GdW"/>
                                     <constraint firstItem="xBf-og-Yxv" firstAttribute="top" secondItem="LNf-GK-qSM" secondAttribute="bottom" constant="39" id="6eb-RE-eVl"/>
                                     <constraint firstItem="FJV-CU-EIp" firstAttribute="top" secondItem="7JR-dP-qkS" secondAttribute="bottom" id="Fxd-nf-cpS"/>
+                                    <constraint firstItem="O70-Y7-6gU" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="G8L-pn-EGE"/>
                                     <constraint firstItem="mPv-vB-7mb" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="JnS-wr-8ez"/>
                                     <constraint firstItem="7JR-dP-qkS" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="K7F-Aj-iU2"/>
                                     <constraint firstItem="Mtk-0T-WQB" firstAttribute="top" secondItem="FJV-CU-EIp" secondAttribute="bottom" constant="44" id="M28-EN-qlU"/>
                                     <constraint firstItem="S9e-JQ-Tak" firstAttribute="top" secondItem="3CA-qm-zqW" secondAttribute="bottom" constant="67" id="Mio-wV-gMp"/>
                                     <constraint firstItem="3CA-qm-zqW" firstAttribute="top" secondItem="Mtk-0T-WQB" secondAttribute="bottom" id="PIr-Xb-qPK"/>
                                     <constraint firstItem="LNf-GK-qSM" firstAttribute="top" secondItem="47A-gD-vet" secondAttribute="top" constant="120" id="U7V-tZ-CPC"/>
+                                    <constraint firstItem="O70-Y7-6gU" firstAttribute="top" secondItem="47A-gD-vet" secondAttribute="top" constant="120" id="YE8-Qg-s7l"/>
                                     <constraint firstItem="7JR-dP-qkS" firstAttribute="top" secondItem="mPv-vB-7mb" secondAttribute="bottom" constant="44" id="Yfi-v2-KUI"/>
                                     <constraint firstItem="FJV-CU-EIp" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="by5-Q0-7Ti"/>
                                     <constraint firstItem="xBf-og-Yxv" firstAttribute="centerX" secondItem="47A-gD-vet" secondAttribute="centerX" id="ck6-yv-Coo"/>
@@ -363,11 +376,12 @@
                         <outlet property="passwordTextField" destination="Mtk-0T-WQB" id="vhy-Jx-hY9"/>
                         <outlet property="scrollView" destination="47A-gD-vet" id="GEf-TQ-l8y"/>
                         <outlet property="signupBtn" destination="S9e-JQ-Tak" id="lCh-Rf-QoL"/>
+                        <outlet property="userAvatarImageView" destination="LNf-GK-qSM" id="scQ-dB-o1a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiv-KU-Qeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="135"/>
+            <point key="canvasLocation" x="1823.1884057971015" y="134.59821428571428"/>
         </scene>
         <!--Main Screen View Controller-->
         <scene sceneID="neE-qx-fWY">
@@ -453,7 +467,7 @@
                                     <outlet property="delegate" destination="Pxh-WP-Tgp" id="Kqz-xn-tfl"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-xy-Isi" customClass="CreateView" customModule="InTheHood_ios" customModuleProvider="target">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-xy-Isi" customClass="CreateView" customModule="InTheHood_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="810"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-jN-gtG">
@@ -540,11 +554,11 @@
                                                     <action selector="didPressCreateCurrencyBtn:" destination="Pxh-WP-Tgp" eventType="touchUpInside" id="E07-le-BAb"/>
                                                 </connections>
                                             </button>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-Cv-RRb" customClass="CategoriesCollectionView" customModule="InTheHood_ios" customModuleProvider="target">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-Cv-RRb" customClass="CategoriesCollectionView" customModule="InTheHood_ios" customModuleProvider="target">
                                                 <rect key="frame" x="87" y="586" width="240" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kZH-Lg-KjJ">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kZH-Lg-KjJ">
                                                     <size key="itemSize" width="45" height="45"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -552,22 +566,27 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="Jzy-rs-k9w" customClass="CategoryCell" customModule="InTheHood_ios" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="5" width="60" height="45"/>
+                                                        <rect key="frame" x="0.0" y="7.5" width="100" height="45"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="45"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLA-4C-CTy">
-                                                                    <rect key="frame" x="5" y="5" width="55" height="33"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLA-4C-CTy">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </view>
-                                                        <size key="customSize" width="60" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="WLA-4C-CTy" secondAttribute="bottom" id="3DX-u8-xXB"/>
+                                                            <constraint firstItem="WLA-4C-CTy" firstAttribute="top" secondItem="Jzy-rs-k9w" secondAttribute="top" id="bO3-Xu-NAv"/>
+                                                            <constraint firstAttribute="trailing" secondItem="WLA-4C-CTy" secondAttribute="trailing" id="okY-gb-IE3"/>
+                                                            <constraint firstItem="WLA-4C-CTy" firstAttribute="leading" secondItem="Jzy-rs-k9w" secondAttribute="leading" id="uik-dd-KeV"/>
+                                                        </constraints>
+                                                        <size key="customSize" width="100" height="45"/>
                                                         <connections>
                                                             <outlet property="categoryNamelabel" destination="WLA-4C-CTy" id="z4j-UL-F9o"/>
                                                         </connections>
@@ -669,6 +688,7 @@
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="cs2-eY-aBc" id="D2F-3i-OZ0"/>
+                        <outlet property="categoriesCollection" destination="Zfi-Cv-RRb" id="CRV-4M-Txr"/>
                         <outlet property="collectionView" destination="Vba-Ko-wZQ" id="OpM-pv-gAe"/>
                         <outlet property="createCurrencyBtn" destination="tgs-dJ-bWr" id="XVC-i4-to7"/>
                         <outlet property="createPriceBottomBorder" destination="9Uj-vT-oLM" id="LvD-AW-syL"/>
@@ -684,7 +704,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gf-vc-jK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1633.3333333333335" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2543.4782608695655" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>

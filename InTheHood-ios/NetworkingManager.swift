@@ -6,10 +6,11 @@
 //  Copyright © 2019 Rotem Nevgauker. All rights reserved.
 //
 
-import UIKit
+
+import Alamofire
 
 class API: NSObject {
-    let baseURLDEV = "http://localhost:3004"
+    let baseURLDEV = "http://localhost:3004/"
     let baseURLPROD = ""
     let defaultHeaders:[String: String] = [String :  String]()
 }
@@ -18,8 +19,10 @@ class API: NSObject {
 class NetworkingManager: NSObject {
     
     var THE_API:API!
-    let baseURL: URL?
+    var baseUrlStr: String!
+    
     var categories:[String]?
+    
     
     private static var sharedNetworkManager: NetworkingManager = {
         let THE_API  = API()
@@ -29,12 +32,10 @@ class NetworkingManager: NSObject {
     
     private init(api: API) {
         self.THE_API = api
-        
-        var urlStr =  THE_API.baseURLPROD
+        baseUrlStr =  THE_API.baseURLPROD
         if Utils.IsDevelopment() {
-            urlStr = THE_API.baseURLDEV
+            baseUrlStr = THE_API.baseURLDEV
         }
-        baseURL = URL(string: urlStr)
     }
     
     class func shared() -> NetworkingManager {
@@ -44,9 +45,141 @@ class NetworkingManager: NSObject {
     
     func getCategories() {
         
+        let urlStr = baseUrlStr  + "categories"
+        
+        
+        Alamofire.request(urlStr, method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+               
+                
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        
+                        if let arr = dict["categories"]  as? [String] {
+                            self.categories = arr
+                        }
+                    }
+                }
+                else {
+                    print(response.error?.localizedDescription ?? "")
+                }
+                
+              
+                
+                
+                
+        }
+        
+    
+            
+
+        
+        
+        
         
 
     }
+    
+    
+    
+    func signin(email:String, password:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "user/signin"
+        let params = ["email": email, "password": password]
+        
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                
+                
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        
+                        if  dict["error"] == nil {
+                            completion(nil, dict)
+
+                        }else {
+                            completion(dict["error"] as? String, nil)
+                        }
+                }
+                else {
+                        print(response.error?.localizedDescription ?? "")
+                        completion(response.error?.localizedDescription, nil)
+                    }
+                }
+        }
+    }
+    
+    func signup(email:String,password:String,name:String,avatar:UIImage)
+    {
+        let params = [
+            "email": email,
+            "password" : password,
+            "name" : name
+        ]
+        
+        let urlStr = baseUrlStr + "users/user/signup"
+        //Header HERE
+//        let headers = [
+//            "token" : "W2Y3TUYS0RR13T3WX2X4QPRZ4ZQVWPYQ",
+//            "Content-type": "multipart/form-data",
+//            "Content-Disposition" : "form-data"
+//        ]
+        
+        let imgData:Data =  avatar.jpegData(compressionQuality: 0.2)!
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            //Parameter for Upload files
+            
+            multipartFormData.append(imgData, withName:  "userAvatar", fileName: "userAvatar.jpg", mimeType:  "image/jpg")
+            for (key, value) in params
+            {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+            
+        }, usingThreshold:UInt64.init(),
+           to: urlStr, //URL Here
+            method: .post,
+            headers: nil, //pass header dictionary here
+            encodingCompletion: { (result) in
+                
+                switch result {
+                case .success(let upload, _, _):
+                    print("the status code is :")
+                    
+                    upload.uploadProgress(closure: { (progress) in
+                        print("something")
+                    })
+                    
+                    upload.responseJSON { response in
+                        print("the resopnse code is : \(response.response?.statusCode)")
+                        print("the response is : \(response)")
+                    }
+                    break
+                case .failure(let encodingError):
+                    print("the error is  : \(encodingError.localizedDescription)")
+                    break
+                }
+        })
+    }
+
+       
+                
+                
+        
 
 
 }

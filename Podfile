@@ -7,6 +7,8 @@ target 'InTheHood-ios' do
 
 	pod 'collection-view-layouts/PinterestLayout'
 	pod 'Alamofire'
+  pod 'CropViewController'
+
 
   # Pods for InTheHood-ios
 
