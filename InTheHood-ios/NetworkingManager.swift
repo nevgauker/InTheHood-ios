@@ -123,8 +123,8 @@ class NetworkingManager: NSObject {
         }
     }
     
-    func signup(email:String,password:String,name:String,avatar:UIImage)
-    {
+    func signup(email:String,password:String,name:String,avatar:UIImage, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()){
+
         let params = [
             "email": email,
             "password" : password,
@@ -133,27 +133,27 @@ class NetworkingManager: NSObject {
         
         let urlStr = baseUrlStr + "users/user/signup"
         //Header HERE
-//        let headers = [
-//            "token" : "W2Y3TUYS0RR13T3WX2X4QPRZ4ZQVWPYQ",
-//            "Content-type": "multipart/form-data",
-//            "Content-Disposition" : "form-data"
-//        ]
+        let headers = [
+            "Content-type": "multipart/form-data",
+            "Content-Disposition" : "form-data"
+        ]
         
         let imgData:Data =  avatar.jpegData(compressionQuality: 0.2)!
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             //Parameter for Upload files
             
-            multipartFormData.append(imgData, withName:  "userAvatar", fileName: "userAvatar.jpg", mimeType:  "image/jpg")
             for (key, value) in params
             {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
             }
+            multipartFormData.append(imgData, withName:  "userAvatar", fileName: "userAvatar.jpg", mimeType:  "image/jpeg")
+
             
         }, usingThreshold:UInt64.init(),
            to: urlStr, //URL Here
             method: .post,
-            headers: nil, //pass header dictionary here
+            headers: headers, //pass header dictionary here
             encodingCompletion: { (result) in
                 
                 switch result {
@@ -167,10 +167,20 @@ class NetworkingManager: NSObject {
                     upload.responseJSON { response in
                         print("the resopnse code is : \(response.response?.statusCode)")
                         print("the response is : \(response)")
+                        if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                            if dict["message"] as! String == "Auth successful" {
+                                completion(nil, dict)
+                            }else {
+                                completion(dict["message"] as? String,nil)
+                            }
+                        }else {
+                            completion(nil, nil)
+                        }
                     }
                     break
                 case .failure(let encodingError):
                     print("the error is  : \(encodingError.localizedDescription)")
+                    completion(encodingError.localizedDescription, nil)
                     break
                 }
         })

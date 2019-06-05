@@ -22,6 +22,7 @@
 		DCE6FFE8229BCAE2003A6626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */; };
 		DCE6FFEB229BCAE2003A6626 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE6FFE9229BCAE2003A6626 /* LaunchScreen.storyboard */; };
 		DCE6FFF6229BCAE2003A6626 /* InTheHood_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6FFF5229BCAE2003A6626 /* InTheHood_iosTests.swift */; };
+		DCF4FF5822A851F80065FE63 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4FF5722A851F80065FE63 /* DataManager.swift */; };
 		DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */; };
 		DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */; };
 		DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB47DE22A431C000D0E7AA /* CreateView.swift */; };
@@ -76,6 +77,7 @@
 		DCE6FFF5229BCAE2003A6626 /* InTheHood_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheHood_iosTests.swift; sourceTree = "<group>"; };
 		DCE6FFF7229BCAE2003A6626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE6FFFC229BCAE2003A6626 /* InTheHood-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InTheHood-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF4FF5722A851F80065FE63 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		DCFB47DC22A4306700D0E7AA /* MainSuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSuperView.swift; sourceTree = "<group>"; };
 		DCFB47DE22A431C000D0E7AA /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */,
 				DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */,
 				DCA8B1FC22A509930060E1A7 /* Utils.swift */,
+				DCF4FF5722A851F80065FE63 /* DataManager.swift */,
 			);
 			path = "InTheHood-ios";
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
+				DCF4FF5822A851F80065FE63 /* DataManager.swift in Sources */,
 				DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */,
 				DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */,
 				DCFB47E122A435B100D0E7AA /* CategoriesCollectionView.swift in Sources */,

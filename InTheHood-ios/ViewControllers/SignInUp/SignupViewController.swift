@@ -151,7 +151,19 @@ class SignupViewController: UIViewController {
             let password = passwordTextField.text!
             let name = nameTextField.text!
 
-            NetworkingManager.shared().signup(email: email, password: password, name: name, avatar: selectedImage!)
+            NetworkingManager.shared().signup(email: email, password: password, name: name, avatar: selectedImage!,completion: {
+                error,data in
+                
+                if error == nil {
+                    
+                    let user = data?["user"]
+                    let token = data!["token"]
+                    
+                    
+                }
+                
+                
+            })
             
         }
     }
