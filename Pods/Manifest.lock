@@ -4,23 +4,33 @@ PODS:
   - collection-view-layouts/PinterestLayout (0.1.2):
     - collection-view-layouts/Core
   - CropViewController (2.5.0)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
+  - SwiftKeychainWrapper (3.3.0)
 
 DEPENDENCIES:
   - Alamofire
   - collection-view-layouts/PinterestLayout
   - CropViewController
+  - NVActivityIndicatorView
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - collection-view-layouts
     - CropViewController
+    - NVActivityIndicatorView
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
   CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
+  SwiftKeychainWrapper: ef5ad793bc0e08e24a5913f28345b8f7bc8e4123
 
-PODFILE CHECKSUM: 7e54ff0b6fc2753201b1cb556500e2581f670947
+PODFILE CHECKSUM: 7c12b69d229360c961414207d7f292b9cff7063c
 
 COCOAPODS: 1.7.0

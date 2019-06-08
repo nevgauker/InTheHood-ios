@@ -104,7 +104,7 @@ extension SignupViewController:UITextFieldDelegate {
 }
 
 
-class SignupViewController: UIViewController {
+class SignupViewController: GeneralViewController {
     
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -150,16 +150,27 @@ class SignupViewController: UIViewController {
             let email = emailTextField.text!
             let password = passwordTextField.text!
             let name = nameTextField.text!
+            startLoader()
 
             NetworkingManager.shared().signup(email: email, password: password, name: name, avatar: selectedImage!,completion: {
                 error,data in
                 
+                self.stopLoader()
                 if error == nil {
-                    
-                    let user = data?["user"]
-                    let token = data!["token"]
-                    
-                    
+                    if let userData:[String:Any] = data?["user"] as? [String:Any] {
+                        let user:User = User(data: userData)
+                        DataManager.shared().user = user
+                        if let token:String = data?["token"] as? String {
+                            _ = DataManager.shared().saveToken(token: token)
+                            _ = DataManager.shared().saveUser(user: user)
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.setRootmainViewController()
+                        }else {
+                            print("token is missing")
+                        }
+                    }else {
+                        print("user is missing")
+                    }
                 }
                 
                 
@@ -205,7 +216,6 @@ class SignupViewController: UIViewController {
     
     
     func dataValidation()->Bool {
-        
         
         nameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()

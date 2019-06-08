@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NetworkingManager.shared().getCategories()
         
+        DataManager.shared().loadData {
+            if DataManager.shared().token != nil {
+                self.setRootmainViewController()
+            }else {
+                self.setRootSigninViewController()
+            }
+        }
+        
         // Override point for customization after application launch.
         return true
     }
@@ -45,6 +53,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    func setRootSigninViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SigninScreen")
+        
+        UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.window!.rootViewController = vc
+        }, completion: { completed in
+            
+        })
+        
+        
+    }
+    
+    
+    func setRootmainViewController() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainScreen")
+        UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.window!.rootViewController = vc
+        }, completion: { completed in
+            
+        })
+        
+    }
+    
+    
+    
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class DataManager: NSObject {
     
@@ -25,11 +26,37 @@ class DataManager: NSObject {
     var user:User?
     var token:String?
     
-    func saveToken(){
-        
+    func saveToken(token:String)->Bool{
+        self.token = token
+        let saveTokenSuccessful: Bool = KeychainWrapper.standard.set(token, forKey: "token")
+        return saveTokenSuccessful
+      
     }
-    func loadToken(){
+    func saveUser(user:User)->Bool{
+        self.user = user
+        let saveEmailSuccessful: Bool = KeychainWrapper.standard.set(user.email, forKey:"email")
+        return saveEmailSuccessful
+    }
+    
+    func loadData(completion: @escaping () -> ()){
+        token = KeychainWrapper.standard.string(forKey: "token")
+        NetworkingManager.shared().setDefaultHeaders(token: token)
+        let retrievedEmail: String? = KeychainWrapper.standard.string(forKey: "email")
+        if let email = retrievedEmail {
+            NetworkingManager.shared().fetchMyUser(email: email, completion: {
+                error, data in
+                if error != nil {
+                    if let userData = data?["user"] as? [String : Any] {
+                        let user = User(data: userData)
+                        self.user = user
+                    }
+                }
+                completion()
+            })
+        }
         
+        
+
     }
    
     

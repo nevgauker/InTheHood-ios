@@ -15,6 +15,8 @@ extension SigninViewController:UITextFieldDelegate {
             
             UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
                 self.emailBorder.alpha = 1.0
+                self.emailBorder.backgroundColor = UIColor.black
+
                 self.passwordBorder.alpha = 0.0
             }, completion: { (finished: Bool) in
             })
@@ -22,6 +24,8 @@ extension SigninViewController:UITextFieldDelegate {
             UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
                 self.emailBorder.alpha = 0.0
                 self.passwordBorder.alpha = 1.0
+                self.passwordBorder.backgroundColor = UIColor.black
+
             }, completion: { (finished: Bool) in
             })
         }
@@ -39,7 +43,7 @@ extension SigninViewController:UITextFieldDelegate {
     }
 }
 
-class SigninViewController: UIViewController {
+class SigninViewController: GeneralViewController {
 
     
     @IBOutlet weak var mainTitleLabel: UILabel!
@@ -57,10 +61,34 @@ class SigninViewController: UIViewController {
     //MARK: - actions
     @IBAction func didPressSignin(_ sender: UIButton) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainScreen")
-        self.view.window?.rootViewController = vc
         
+        if dataValidation() {
+            startLoader()
+            let email = emailTextField.text!
+            let password = passwordTextField.text!
+            NetworkingManager.shared().signin(email: email, password: password,completion: {
+                error,data in
+                
+                self.stopLoader()
+                if error == nil {
+                    if let userData:[String:Any] = data?["user"] as? [String:Any] {
+                        let user:User = User(data: userData)
+                        DataManager.shared().user = user
+                        if let token:String = data?["token"] as? String {
+                            _ = DataManager.shared().saveToken(token: token)
+                            _ = DataManager.shared().saveUser(user: user)
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.setRootmainViewController()
+                        }else {
+                            print("token is missing")
+                        }
+                    }else {
+                        print("user is missing")
+                    }
+                }
+            })
+            
+        }
     }
     @IBAction func didPressSignup(_ sender: UIButton) {
         performSegue(withIdentifier: "signupSegue", sender: self)
@@ -70,14 +98,23 @@ class SigninViewController: UIViewController {
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func dataValidation()->Bool {
+        
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        emailBorder.alpha = 0.0
+        passwordBorder.alpha = 0.0
+        var validationComplete:Bool = true
+        if  emailTextField.text == nil || emailTextField.text?.count == 0 {
+            emailBorder.alpha = 1.0
+            emailBorder.backgroundColor = UIColor.red
+            validationComplete =  false
+        }
+        if  passwordTextField.text == nil || passwordTextField.text?.count == 0 {
+            passwordBorder.alpha = 1.0
+            passwordBorder.backgroundColor = UIColor.red
+            validationComplete =  false
+        }
+        return validationComplete
     }
-    */
-
 }

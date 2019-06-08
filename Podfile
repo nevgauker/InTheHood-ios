@@ -8,6 +8,8 @@ target 'InTheHood-ios' do
 	pod 'collection-view-layouts/PinterestLayout'
 	pod 'Alamofire'
   pod 'CropViewController'
+  pod 'NVActivityIndicatorView'
+  pod 'SwiftKeychainWrapper'
 
 
   # Pods for InTheHood-ios

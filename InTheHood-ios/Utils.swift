@@ -49,4 +49,8 @@ class Utils: NSObject {
         return imagePicker
 
     }
+    
+    class func fillColor()->UIColor {
+        return UIColor(red: 82.0/255.0, green: 145.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    }
 }

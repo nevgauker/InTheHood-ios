@@ -12,7 +12,7 @@ import Alamofire
 class API: NSObject {
     let baseURLDEV = "http://localhost:3004/"
     let baseURLPROD = ""
-    let defaultHeaders:[String: String] = [String :  String]()
+    var defaultHeaders:HTTPHeaders = HTTPHeaders()
 }
 
 
@@ -42,7 +42,15 @@ class NetworkingManager: NSObject {
         return sharedNetworkManager
     }
     
-    
+    func setDefaultHeaders(token:String?) {
+        if let theToken = token {
+            
+           
+            self.THE_API.defaultHeaders["Content-type"] = "bearer " + theToken
+            self.THE_API.defaultHeaders["authorization"] = "bearer " + theToken
+        }
+    }
+    //MARK: categories
     func getCategories() {
         
         let urlStr = baseUrlStr  + "categories"
@@ -57,8 +65,6 @@ class NetworkingManager: NSObject {
                 return .success
             }
             .responseJSON { response in
-               
-                
                 if response.error == nil {
                     if let dict = response.result.value as? Dictionary<String,AnyObject>{
                         
@@ -70,28 +76,15 @@ class NetworkingManager: NSObject {
                 else {
                     print(response.error?.localizedDescription ?? "")
                 }
-                
-              
-                
-                
-                
         }
-        
-    
-            
-
-        
-        
-        
-        
-
     }
     
     
-    
+    //MARK: users
+
     func signin(email:String, password:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
         
-        let urlStr = baseUrlStr  + "user/signin"
+        let urlStr = baseUrlStr  + "users/user/signin"
         let params = ["email": email, "password": password]
         
         Alamofire.request(urlStr, method: .post, parameters: params, encoding: JSONEncoding.default)
@@ -103,16 +96,12 @@ class NetworkingManager: NSObject {
                 return .success
             }
             .responseJSON { response in
-                
-                
                 if response.error == nil {
                     if let dict = response.result.value as? Dictionary<String,AnyObject>{
-                        
-                        if  dict["error"] == nil {
+                        if dict["message"] as? String == "Auth successful" {
                             completion(nil, dict)
-
                         }else {
-                            completion(dict["error"] as? String, nil)
+                            completion(dict["error"] as? String,nil)
                         }
                 }
                 else {
@@ -171,7 +160,7 @@ class NetworkingManager: NSObject {
                             if dict["message"] as! String == "Auth successful" {
                                 completion(nil, dict)
                             }else {
-                                completion(dict["message"] as? String,nil)
+                                completion(dict["error"] as? String,nil)
                             }
                         }else {
                             completion(nil, nil)
@@ -185,6 +174,74 @@ class NetworkingManager: NSObject {
                 }
         })
     }
+    
+    
+    func fetchMyUser(email:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()){
+        let urlStr = baseUrlStr  + "users/user/me"
+        let params = ["email": email]
+        
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                         completion(nil, dict)
+                    }else {
+                        completion(nil, nil)
+                    }
+                }else {
+                     completion(response.error?.localizedDescription, nil)
+                }
+        }
+    }
+    //MARK: items
+    func getItems(location:[String : String], distance: Float) {
+        
+        
+        var params = [
+            "location": location,
+            "distance" : distance,
+            ] as [String : Any]
+        
+        
+        
+        
+      
+        
+        let urlStr = baseUrlStr  + "items"
+        
+    Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil {
+                            print(dict["error"])
+                        }else if let arr = dict["items"]  as? [String] {
+                            print(arr)
+                        }else {
+                            
+                        }
+                    }
+                }
+                else {
+                    print(response.error?.localizedDescription ?? "")
+                }
+        }
+    }
+
 
        
                 

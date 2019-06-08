@@ -12,6 +12,11 @@
 		DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D60229BD6E200693E17 /* SigninViewController.swift */; };
 		DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D62229BE1BE00693E17 /* SignupViewController.swift */; };
 		DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */; };
+		DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */; };
+		DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FD22A8D8AF007B769B /* Extensions.swift */; };
+		DC9B720022A9225A007B769B /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */; };
+		DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720122A9236F007B769B /* MapKit.framework */; };
+		DC9B720422A92421007B769B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720322A92421007B769B /* CoreLocation.framework */; };
 		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
 		DCA8B20222A50F640060E1A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20122A50F640060E1A7 /* Item.swift */; };
 		DCA8B20422A50F700060E1A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20322A50F700060E1A7 /* User.swift */; };
@@ -61,6 +66,11 @@
 		DC328D60229BD6E200693E17 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		DC328D62229BE1BE00693E17 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
+		DC9B71FD22A8D8AF007B769B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
+		DC9B720122A9236F007B769B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DC9B720322A92421007B769B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DCA8B20122A50F640060E1A7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DCA8B20322A50F700060E1A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -90,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9B720422A92421007B769B /* CoreLocation.framework in Frameworks */,
+				DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */,
 				8473FD848EF99A699957B75F /* Pods_InTheHood_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +141,8 @@
 		1D7FECE4D76F36BC68AF1A2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC9B720322A92421007B769B /* CoreLocation.framework */,
+				DC9B720122A9236F007B769B /* MapKit.framework */,
 				633983780CA0739513D6FC7E /* Pods_InTheHood_ios.framework */,
 				79D7486459394661B25E7F27 /* Pods_InTheHood_iosTests.framework */,
 				3362871004C1D86FD83D37EA /* Pods_InTheHood_iosUITests.framework */,
@@ -142,6 +156,7 @@
 				DCA8B1FB22A507040060E1A7 /* GeneralViews */,
 				DCA8B1F922A506DA0060E1A7 /* Main */,
 				DCA8B1F822A506CB0060E1A7 /* SignInUp */,
+				DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -160,6 +175,7 @@
 			children = (
 				DCA8B1FA22A506E80060E1A7 /* Views */,
 				DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */,
+				DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 				DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */,
 				DCA8B1FC22A509930060E1A7 /* Utils.swift */,
 				DCF4FF5722A851F80065FE63 /* DataManager.swift */,
+				DC9B71FD22A8D8AF007B769B /* Extensions.swift */,
 			);
 			path = "InTheHood-ios";
 			sourceTree = "<group>";
@@ -473,6 +490,7 @@
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
+				DC9B720022A9225A007B769B /* LocationPickerViewController.swift in Sources */,
 				DCF4FF5822A851F80065FE63 /* DataManager.swift in Sources */,
 				DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */,
 				DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */,
@@ -481,7 +499,9 @@
 				DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */,
 				DCA8B20222A50F640060E1A7 /* Item.swift in Sources */,
 				DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */,
+				DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
+				DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
 				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,
 			);

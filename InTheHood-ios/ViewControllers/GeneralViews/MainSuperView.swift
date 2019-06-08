@@ -23,6 +23,7 @@ class MainSuperView: UIView {
     
     func initSubviews() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapView(sender:)))
+        tapGesture.cancelsTouchesInView = false
         self.addGestureRecognizer(tapGesture)
     }
     
