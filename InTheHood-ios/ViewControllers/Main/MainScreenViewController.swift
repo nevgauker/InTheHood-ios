@@ -162,7 +162,7 @@ extension MainScreenViewController: UICollectionViewDataSource {
         if collectionView.tag == 0 {
                 return DataManager.shared().items.count
         }
-        if let categories = NetworkingManager.shared().categories {
+        if let categories = DataManager.shared().categories {
             return categories.count
         }
         return 0
@@ -177,7 +177,7 @@ extension MainScreenViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if  collectionView.tag == 1 {
             let theCell = cell as! CategoryCell
-            if let categories = NetworkingManager.shared().categories {
+            if let categories = DataManager.shared().categories {
                 theCell.categoryNamelabel.text = categories[indexPath.item]
                 if indexPath.item == self.selectedCategoryIndex {
                    theCell.backgroundColor = Utils.fillColor()
@@ -225,7 +225,76 @@ extension MainScreenViewController: UICollectionViewDelegate {
     }
 }
 
+extension MainScreenViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if pickerView.tag == 0 {
+            return DataManager.shared().distances.count
+        }else if pickerView.tag == 1 {
+            return DataManager.shared().types.count
 
+        }
+        //2
+        if let categories = DataManager.shared().categories {
+            return categories.count
+        }
+        return 0
+    }
+    
+    
+}
+extension MainScreenViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if pickerView.tag == 0 {
+            return DataManager.shared().distances[row]
+        }else if pickerView.tag == 1 {
+            return DataManager.shared().types[row]
+        }
+        if let categories = DataManager.shared().categories {
+            return categories[row]
+        }
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0 {
+            filter_distance =  DataManager.shared().distances[row]
+        }else if pickerView.tag == 1 {
+            filyter_type =  DataManager.shared().types[row]
+        }else if pickerView.tag == 2 {
+            if let categories = DataManager.shared().categories {
+                filter_category =  categories[row]
+            }
+        }
+        var filterUpdated = false
+        
+        if (filterDistanceLabel.text != filter_distance) {
+            filterUpdated = true
+        }
+        filterDistanceLabel.text = filter_distance
+        if (filterTypeLabel.text != filyter_type) {
+            filterUpdated = true
+        }
+        filterTypeLabel.text = filyter_type
+        if (filterCategoryLabel.text !=  filter_category) {
+            filterUpdated = true
+        }
+        filterCategoryLabel.text = filter_category
+        
+        if filterUpdated {
+            fetchItems()
+        }
+
+        
+
+        
+    }
+}
 
 class MainScreenViewController: UIViewController {
 
@@ -263,8 +332,13 @@ class MainScreenViewController: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var topViewUserAvatar: UIImageView!
     @IBOutlet weak var topViewUserNameLabel: UILabel!
-
     
+    
+    
+    @IBOutlet weak var filterDistanceLabel: UILabel!
+    @IBOutlet weak var filterTypeLabel: UILabel!
+    @IBOutlet weak var filterCategoryLabel: UILabel!
+
     
     //create
     var selectedImage:UIImage?
@@ -273,8 +347,17 @@ class MainScreenViewController: UIViewController {
     var selectedCategoryIndex:Int = 0
     var barterFor = ""
     
+    //filter
+    
+    var filter_distance = DataManager.shared().distances[0]
+    var filyter_type = DataManager.shared().distances[0]
+    var filter_category = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let categories  = DataManager.shared().categories{
+            filter_category = categories[0]
+        }
         fetchItems()
         updateTopView()
         createBarterTextView.layer.cornerRadius = 15.0
@@ -336,7 +419,7 @@ class MainScreenViewController: UIViewController {
         if  sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.filterBtn.setTitle("CANCEL", for: .normal)
+                self.filterBtn.setTitle("DISMISS", for: .normal)
                 var frame = self.filterView.frame
                 frame.origin.y -= 170
                 frame.size.height = 200
@@ -544,7 +627,7 @@ class MainScreenViewController: UIViewController {
     func createItemWithLocation(location:LocationItem){
         
         if let current = DataManager.shared().user {
-            let itemData = [ "title" : createTitleTextField.text!, "price" :  createPriceTextField.text!,"currency" : currency, "type" : type, "category" : NetworkingManager.shared().categories![selectedCategoryIndex],"latitude" :  String(format:"%f", location.coordinate!.latitude), "longitude" :  String(format:"%f", location.coordinate!.longitude), "locationName" : location.name, "ownerId" : current._id,"barterFor" : barterFor]
+            let itemData = [ "title" : createTitleTextField.text!, "price" :  createPriceTextField.text!,"currency" : currency, "type" : type, "category" : DataManager.shared().categories![selectedCategoryIndex],"latitude" :  String(format:"%f", location.coordinate!.latitude), "longitude" :  String(format:"%f", location.coordinate!.longitude), "locationName" : location.name, "ownerId" : current._id,"barterFor" : barterFor]
             NetworkingManager.shared().createItem(params: itemData, itemImage: selectedImage!, completion: { error, data in
                 self.fetchItems()
                 DispatchQueue.main.async {
@@ -569,7 +652,20 @@ class MainScreenViewController: UIViewController {
     }
     
     func fetchItems() {
-        NetworkingManager.shared().getItems(location: nil, distance: -1, completion: {error,data in
+        
+        var dist:Float = -1.0
+        if filter_distance != DataManager.shared().distances[0] {
+            if filter_distance != DataManager.shared().distances[1] {
+                dist = 3.0
+            }
+            if filter_distance != DataManager.shared().distances[2] {
+                 dist = 10.0
+            }
+            if filter_distance != DataManager.shared().distances[3] {
+                dist = 30.0
+            }
+        }
+        NetworkingManager.shared().getItems(location: nil, distance: dist, completion: {error,data in
             
             if error == nil {
                 DataManager.shared().loadItems(data:data)

@@ -21,8 +21,6 @@ class NetworkingManager: NSObject {
     var THE_API:API!
     var baseUrlStr: String!
     
-    var categories:[String]?
-    
     
     private static var sharedNetworkManager: NetworkingManager = {
         let THE_API  = API()
@@ -68,7 +66,7 @@ class NetworkingManager: NSObject {
                     if let dict = response.result.value as? Dictionary<String,AnyObject>{
                         
                         if let arr = dict["categories"]  as? [String] {
-                            self.categories = arr
+                            DataManager.shared().categories = arr
                         }
                     }
                 }

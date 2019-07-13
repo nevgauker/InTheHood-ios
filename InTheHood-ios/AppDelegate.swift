@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import CoreLocation
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static let geoCoder = CLGeocoder()
+
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
         NetworkingManager.shared().getCategories()
+        LocationManager.shared().startLocationTracking()
         
         DataManager.shared().loadData {
             if DataManager.shared().token != nil {

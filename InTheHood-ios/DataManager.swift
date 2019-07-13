@@ -25,7 +25,11 @@ class DataManager: NSObject {
     
     var user:User?
     var token:String?
-    
+    var categories:[String]?
+
+    var types = ["All","Sell","Donate","Barter"]
+    var distances = ["All","<3km","<10km","<30km"]
+
     var items:[Item] = [Item]()
     
     func saveToken(token:String)->Bool{
