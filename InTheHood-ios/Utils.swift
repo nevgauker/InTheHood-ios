@@ -11,11 +11,18 @@ import UIKit
 class Utils: NSObject {
     
     class func IsDevelopment() -> Bool{
-        if let path = Bundle.main.path(forResource: "info", ofType: "plist") {
-            if let dict = NSDictionary(contentsOfFile: path) {
-                let isDevelopment:Bool = dict["development"] as! Bool
-                return isDevelopment
-            }
+        
+        guard let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") else { return true }
+        //load the plist as data in memory
+        guard let plistData = FileManager.default.contents(atPath: plistPath) else { return true  }
+        //use the format of a property list (xml)
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        //convert the plist data to a Swift Dictionary
+        guard let  plistDict = try! PropertyListSerialization.propertyList(from: plistData, options: .mutableContainersAndLeaves, format: &format) as? [String : AnyObject] else { return true }
+        //access the values in the dictionary
+        if let value = plistDict["development"] as? Bool {
+            //do something with your value
+            return value
         }
         return true
     }

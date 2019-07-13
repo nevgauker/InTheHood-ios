@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		5E7E9A186ACCEA18B38425E9 /* Pods_InTheHood_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D7486459394661B25E7F27 /* Pods_InTheHood_iosTests.framework */; };
 		8473FD848EF99A699957B75F /* Pods_InTheHood_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633983780CA0739513D6FC7E /* Pods_InTheHood_ios.framework */; };
+		DC13D74E22CCF52F008B6CEA /* ItemCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13D74D22CCF52F008B6CEA /* ItemCell1.swift */; };
+		DC13D75022CCF545008B6CEA /* ItemCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13D74F22CCF545008B6CEA /* ItemCell2.swift */; };
+		DC13D75222CCF5EC008B6CEA /* GeneralItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13D75122CCF5EC008B6CEA /* GeneralItemCell.swift */; };
 		DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D60229BD6E200693E17 /* SigninViewController.swift */; };
 		DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D62229BE1BE00693E17 /* SignupViewController.swift */; };
 		DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */; };
 		DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */; };
 		DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FD22A8D8AF007B769B /* Extensions.swift */; };
-		DC9B720022A9225A007B769B /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */; };
 		DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720122A9236F007B769B /* MapKit.framework */; };
 		DC9B720422A92421007B769B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720322A92421007B769B /* CoreLocation.framework */; };
 		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
@@ -63,12 +65,14 @@
 		8E848F4F1729EBE574E6B300 /* Pods-InTheHood-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheHood-ios.debug.xcconfig"; path = "Target Support Files/Pods-InTheHood-ios/Pods-InTheHood-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		92D18D379275E6C5A6DA2286 /* Pods-InTheHood-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheHood-iosTests.release.xcconfig"; path = "Target Support Files/Pods-InTheHood-iosTests/Pods-InTheHood-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4D04A4FA13502024C936163 /* Pods-InTheHood-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheHood-ios.release.xcconfig"; path = "Target Support Files/Pods-InTheHood-ios/Pods-InTheHood-ios.release.xcconfig"; sourceTree = "<group>"; };
+		DC13D74D22CCF52F008B6CEA /* ItemCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell1.swift; sourceTree = "<group>"; };
+		DC13D74F22CCF545008B6CEA /* ItemCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell2.swift; sourceTree = "<group>"; };
+		DC13D75122CCF5EC008B6CEA /* GeneralItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralItemCell.swift; sourceTree = "<group>"; };
 		DC328D60229BD6E200693E17 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		DC328D62229BE1BE00693E17 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		DC9B71FD22A8D8AF007B769B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		DC9B720122A9236F007B769B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC9B720322A92421007B769B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -175,7 +179,6 @@
 			children = (
 				DCA8B1FA22A506E80060E1A7 /* Views */,
 				DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */,
-				DC9B71FF22A9225A007B769B /* LocationPickerViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -186,6 +189,9 @@
 				DCFB47DE22A431C000D0E7AA /* CreateView.swift */,
 				DCFB47E022A435B100D0E7AA /* CategoriesCollectionView.swift */,
 				DCFB47E222A435D700D0E7AA /* CategoryCell.swift */,
+				DC13D74D22CCF52F008B6CEA /* ItemCell1.swift */,
+				DC13D74F22CCF545008B6CEA /* ItemCell2.swift */,
+				DC13D75122CCF5EC008B6CEA /* GeneralItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,9 +242,9 @@
 				DCA8B1F722A5067C0060E1A7 /* ViewControllers */,
 				DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */,
 				DCE6FFE4229BCAE1003A6626 /* Main.storyboard */,
+				DCE6FFEC229BCAE2003A6626 /* Info.plist */,
 				DCE6FFE7229BCAE2003A6626 /* Assets.xcassets */,
 				DCE6FFE9229BCAE2003A6626 /* LaunchScreen.storyboard */,
-				DCE6FFEC229BCAE2003A6626 /* Info.plist */,
 				DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */,
 				DCFB47DA22A3E88D00D0E7AA /* NetworkingManager.swift */,
 				DCA8B1FC22A509930060E1A7 /* Utils.swift */,
@@ -488,9 +494,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
+				DC13D75222CCF5EC008B6CEA /* GeneralItemCell.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
-				DC9B720022A9225A007B769B /* LocationPickerViewController.swift in Sources */,
 				DCF4FF5822A851F80065FE63 /* DataManager.swift in Sources */,
 				DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */,
 				DC328D63229BE1BE00693E17 /* SignupViewController.swift in Sources */,
@@ -499,11 +505,13 @@
 				DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */,
 				DCA8B20222A50F640060E1A7 /* Item.swift in Sources */,
 				DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */,
+				DC13D75022CCF545008B6CEA /* ItemCell2.swift in Sources */,
 				DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
 				DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
 				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,
+				DC13D74E22CCF52F008B6CEA /* ItemCell1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

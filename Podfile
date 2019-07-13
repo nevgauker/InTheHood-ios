@@ -10,6 +10,11 @@ target 'InTheHood-ios' do
   pod 'CropViewController'
   pod 'NVActivityIndicatorView'
   pod 'SwiftKeychainWrapper'
+  pod 'LocationPickerViewController'
+  pod 'Kingfisher'
+
+
+
 
 
   # Pods for InTheHood-ios

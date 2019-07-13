@@ -4,6 +4,8 @@ PODS:
   - collection-view-layouts/PinterestLayout (0.1.2):
     - collection-view-layouts/Core
   - CropViewController (2.5.0)
+  - Kingfisher (5.5.0)
+  - LocationPickerViewController (3.4)
   - NVActivityIndicatorView (4.7.0):
     - NVActivityIndicatorView/Presenter (= 4.7.0)
   - NVActivityIndicatorView/Presenter (4.7.0)
@@ -13,6 +15,8 @@ DEPENDENCIES:
   - Alamofire
   - collection-view-layouts/PinterestLayout
   - CropViewController
+  - Kingfisher
+  - LocationPickerViewController
   - NVActivityIndicatorView
   - SwiftKeychainWrapper
 
@@ -21,6 +25,8 @@ SPEC REPOS:
     - Alamofire
     - collection-view-layouts
     - CropViewController
+    - Kingfisher
+    - LocationPickerViewController
     - NVActivityIndicatorView
     - SwiftKeychainWrapper
 
@@ -28,9 +34,11 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
   CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
+  Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
+  LocationPickerViewController: 4f33d63587bca682267a09779de2b2e09cf5b8e2
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   SwiftKeychainWrapper: ef5ad793bc0e08e24a5913f28345b8f7bc8e4123
 
-PODFILE CHECKSUM: 7c12b69d229360c961414207d7f292b9cff7063c
+PODFILE CHECKSUM: 4d38fabcc61ba2f11413d56bad6e749aceee7901
 
 COCOAPODS: 1.7.0

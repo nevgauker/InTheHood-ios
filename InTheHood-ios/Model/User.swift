@@ -10,6 +10,7 @@ import UIKit
 
 class User: NSObject {
     
+    var _id = ""
     var email = ""
     var password = ""
     var name = ""
@@ -20,6 +21,9 @@ class User: NSObject {
     var pushToken = ""
     
     init(data:[String:Any]) {
+        if let val = data["_id"] as? String{
+            _id = val
+        }
         if let val = data["email"] as? String{
             email = val
         }

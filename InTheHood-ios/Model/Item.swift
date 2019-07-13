@@ -9,6 +9,7 @@
 import UIKit
 
 class Item: NSObject {
+    var _id = ""
     var title = ""
     var price = ""
     var ownerId = ""
@@ -20,13 +21,25 @@ class Item: NSObject {
     var type = ""
     var category = ""
     var comments = ""
+    var itemStatue = status.ready.rawValue
+    var barterFor = ""
+    
+    enum status:String {
+        case ready = "ready"
+        case paused = "paused"
+        case sold = "sold"
+    }
     
     init(data:[String:Any]) {
+        if let val = data["_id"] as? String{
+            _id = val
+        }
+        
         if let val = data["title"] as? String{
             title = val
         }
-        if let val = data["price"] as? String{
-            price = val
+        if let val = data["price"] as? NSNumber {
+            price = val.stringValue
         }
         if let val = data["ownerId"] as? String{
             ownerId = val
@@ -55,6 +68,14 @@ class Item: NSObject {
         if let val = data["comments"] as? String{
             comments = val
         }
+        if let val = data["status"] as? String{
+            itemStatue = Item.status(rawValue: val)!.rawValue
+        }
+        
+        if let val = data["barterFor"] as? String{
+            barterFor = val
+        }
     }
+
     
 }

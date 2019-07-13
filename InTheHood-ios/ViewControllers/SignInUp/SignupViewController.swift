@@ -163,6 +163,8 @@ class SignupViewController: GeneralViewController {
                         if let token:String = data?["token"] as? String {
                             _ = DataManager.shared().saveToken(token: token)
                             _ = DataManager.shared().saveUser(user: user)
+                            NetworkingManager.shared().setDefaultHeaders(token: token)
+
                             let appDelegate = UIApplication.shared.delegate as! AppDelegate
                             appDelegate.setRootmainViewController()
                         }else {

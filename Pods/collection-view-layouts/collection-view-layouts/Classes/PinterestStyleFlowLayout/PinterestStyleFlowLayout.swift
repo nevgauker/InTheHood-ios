@@ -56,7 +56,7 @@ public class PinterestStyleFlowLayout: ContentDynamicLayout {
 
     private func minYOffsetFrom(array: [CGFloat]) -> (offset: CGFloat, index: Int) {
         let minYOffset = array.min()!
-        let minIndex = array.index(of: minYOffset)!
+        let minIndex = array.firstIndex(of: minYOffset)!
 
         return (minYOffset, minIndex)
     }

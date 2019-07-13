@@ -9,9 +9,34 @@
 import UIKit
 import collection_view_layouts
 import CropViewController
+import LocationPickerViewController
+
+
+extension MainScreenViewController:UITextViewDelegate {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textView.layer.borderWidth = 0.5
+        textView.layer.borderColor = UIColor.black.cgColor
+        return true
+    }
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.layer.borderWidth = 0.0
+        barterFor = textView.text
+        return true
+    }
+}
+
 
 extension MainScreenViewController:CropViewControllerDelegate {
-    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int){
+        self.dismiss(animated: true , completion: {
+            DispatchQueue.main.async {
+                self.createUserAvatar.image = image
+                self.createUserAvatar.layer.borderWidth = 0.0
+                self.selectedImage = image
+            }
+            
+        })
+    }
     func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         
         
@@ -58,7 +83,13 @@ extension MainScreenViewController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                     layout collectionViewLayout: UICollectionViewLayout,
                     sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100.0, height: 45.0)
+        
+        
+        if collectionView.tag == 1 {
+            return CGSize(width: 100.0, height: 45.0)
+
+        }
+        return CGSize(width: 414.0, height: 260.0)
     }
 }
 
@@ -125,18 +156,12 @@ extension MainScreenViewController:UITextFieldDelegate {
         return true
     }
 }
-extension MainScreenViewController: ContentDynamicLayoutDelegate {
-    func cellSize(indexPath: IndexPath) -> CGSize {
-        return cellsSizes[indexPath.row]
-    }
-}
 
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 0 {
-            return cellsSizes.count
+                return DataManager.shared().items.count
         }
-        
         if let categories = NetworkingManager.shared().categories {
             return categories.count
         }
@@ -144,14 +169,8 @@ extension MainScreenViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var identifier = "itemCell"
-        if last == 2 {
-            last = 1
-        }else {
-            last = 2
-        }
+        var identifier = "GeneralItemCell"
         
-        identifier +=  String(last)
         if  collectionView.tag == 1 {
             identifier = "CategoryCell"
         }
@@ -171,6 +190,14 @@ extension MainScreenViewController: UICollectionViewDataSource {
             }
             
             
+        }else {
+            
+            let item = DataManager.shared().items[indexPath.item]
+            if let theCell = cell as? GeneralItemCell {
+                theCell.setCell(item: item)
+                
+            }
+            
         }
         
         return cell
@@ -184,6 +211,17 @@ extension MainScreenViewController: UICollectionViewDelegate {
             self.categoriesCollection.reloadData()
         }
         
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.tag == 0 {
+            cell.alpha = 0.0
+            UIView.animate(withDuration: 1.0, animations: {
+                cell.alpha = 1.0
+            }, completion: {
+                (value: Bool) in
+             
+            })
+        }
     }
 }
 
@@ -216,50 +254,36 @@ class MainScreenViewController: UIViewController {
     
     @IBOutlet weak var createCurrencyBtn: UIButton!
     @IBOutlet weak var createPriceTextField: UITextField!
-    
-    
-    var last = 2
+    @IBOutlet weak var createBarterView: UIView!
+    @IBOutlet weak var createBarterTextView: UITextView!
 
-    var cellsSizes:[CGSize] = []
+    @IBOutlet weak var barterViewHeight: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topViewUserAvatar: UIImageView!
+    @IBOutlet weak var topViewUserNameLabel: UILabel!
+
     
     
     //create
     var selectedImage:UIImage?
     var type:String = "Sell"
-    var currency:String = Utils.currenciesStrings()[0]
+    var currency:String = Utils.currenciesNames()[0]
     var selectedCategoryIndex:Int = 0
-
+    var barterFor = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let size1 = CGSize(width: self.view.frame.size.width/2, height: 322)
-        let size2 = CGSize(width: self.view.frame.size.width/2, height: 258)
-        let size3 = CGSize(width: self.view.frame.size.width/2, height: 258)
-        let size4 = CGSize(width: self.view.frame.size.width/2, height: 322)
-        
-        cellsSizes.append(size1)
-        cellsSizes.append(size2)
-        cellsSizes.append(size3)
-        cellsSizes.append(size4)
-        
-
-        
-    NetworkingManager.shared().getItems(location: [ "longitude" :"-1", "latitude" : "-1" ], distance:  -1)
-        
-
-        
-      
-        let contentFlowLayout: ContentDynamicLayout = PinterestStyleFlowLayout()
-        contentFlowLayout.delegate = self
-        contentFlowLayout.contentPadding = ItemsPadding(horizontal: 0, vertical: 10)
-        contentFlowLayout.cellsPadding = ItemsPadding(horizontal: 5, vertical: 5)
-        contentFlowLayout.contentAlign = .left
-        collectionView.collectionViewLayout = contentFlowLayout
-        collectionView.reloadData()
-        
-        createUserAvatar.layer.cornerRadius = createUserAvatar.frame.size.width / 2
+        fetchItems()
+        updateTopView()
+        createBarterTextView.layer.cornerRadius = 15.0
+        createUserAvatar.layer.cornerRadius = 15.0
         createCreateBtn.layer.cornerRadius = 15.0
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -270,6 +294,10 @@ class MainScreenViewController: UIViewController {
         
     }
     //MARK: - actions
+    @IBAction func didPressSignOut(_ sender: UIButton) {
+        NetworkingManager.shared().signOut()
+    }
+
     @IBAction func didPressAdd(_ sender: UIButton) {
         if  sender.tag == 0 {
             sender.tag = 1
@@ -308,8 +336,12 @@ class MainScreenViewController: UIViewController {
         if  sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.filterView.alpha = 1.0
                 self.filterBtn.setTitle("CANCEL", for: .normal)
+                var frame = self.filterView.frame
+                frame.origin.y -= 170
+                frame.size.height = 200
+                self.filterView.frame = frame
+                
                 
             }, completion: { (finished: Bool) in
                 self.filterBtn.backgroundColor = UIColor.red
@@ -323,8 +355,11 @@ class MainScreenViewController: UIViewController {
             
             addBtn.isEnabled = true
             UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.filterView.alpha = 0.0
                 self.filterBtn.setTitle("FILTER", for: .normal)
+                var frame = self.filterView.frame
+                frame.origin.y += 170
+                frame.size.height = 30.0
+                self.filterView.frame = frame
             }, completion: { (finished: Bool) in
                 self.filterBtn.backgroundColor = UIColor.white
                 self.filterBtn.setTitleColor(UIColor(red: 82.0/255.0, green: 145.0/255.0, blue: 255.0/255.0, alpha: 1.0), for: .normal)
@@ -339,8 +374,21 @@ class MainScreenViewController: UIViewController {
         
         
         if dataValidation() {
-            createView.alpha = 0.0
-            performSegue(withIdentifier: "locationPickerSegue", sender: self)
+         
+            
+            let locationPicker = LocationPicker()
+            locationPicker.pickCompletion = { (pickedLocationItem) in
+                
+                self.createItemWithLocation(location: pickedLocationItem)
+                // Do something with the location the user picked.
+            }
+            locationPicker.addBarButtons()
+            // Call this method to add a done and a cancel button to navigation bar.
+            
+            let navigationController = UINavigationController(rootViewController: locationPicker)
+            present(navigationController, animated: true, completion: nil)
+            
+            
         }
     }
 
@@ -375,6 +423,39 @@ class MainScreenViewController: UIViewController {
         
         
     }
+    
+    
+    @IBAction func typeDidChanged(_ sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 1 {
+            //donate
+            type = "Donate"
+            createPriceTextField.text = "0"
+            createPriceTextField.isUserInteractionEnabled = false
+            createCurrencyBtn.isEnabled = false
+
+            barterViewHeight.constant = 0.0
+            createView.updateConstraints()
+    
+        }else if sender.selectedSegmentIndex == 0 {
+            type = "Sell"
+            createCurrencyBtn.isEnabled = true
+            createPriceTextField.isUserInteractionEnabled = true
+            barterViewHeight.constant = 0.0
+            createView.updateConstraints()
+
+        }else {
+            type = "Barter"
+            createCurrencyBtn.isEnabled = false
+            createPriceTextField.text = "0"
+            createPriceTextField.isUserInteractionEnabled = false
+            barterViewHeight.constant = 120.0
+            createView.updateConstraints()
+        }
+        
+    }
+    
+    
     @IBAction func didPressCreateCurrencyBtn(_ sender: Any) {
         
         // let locale = Locale.current
@@ -415,7 +496,8 @@ class MainScreenViewController: UIViewController {
     
     func presentCropViewController(img:UIImage) {
         DispatchQueue.main.async {
-            let vc = CropViewController(croppingStyle: .circular, image: img)
+            let vc = CropViewController(croppingStyle: .default, image: img)
+            vc.aspectRatioPreset = .presetSquare
             vc.delegate = self as CropViewControllerDelegate
             self.present(vc, animated: false, completion: nil)
         }
@@ -442,6 +524,8 @@ class MainScreenViewController: UIViewController {
         if selectedImage == nil{
            createUserAvatar.layer.borderWidth = 1.0
             createUserAvatar.layer.borderColor = UIColor.red.cgColor
+            validationComplete =  false
+
         }
        
         return validationComplete
@@ -457,6 +541,70 @@ class MainScreenViewController: UIViewController {
         createTypeSegmentedControl.selectedSegmentIndex = 0
         
     }
+    func createItemWithLocation(location:LocationItem){
+        
+        if let current = DataManager.shared().user {
+            let itemData = [ "title" : createTitleTextField.text!, "price" :  createPriceTextField.text!,"currency" : currency, "type" : type, "category" : NetworkingManager.shared().categories![selectedCategoryIndex],"latitude" :  String(format:"%f", location.coordinate!.latitude), "longitude" :  String(format:"%f", location.coordinate!.longitude), "locationName" : location.name, "ownerId" : current._id,"barterFor" : barterFor]
+            NetworkingManager.shared().createItem(params: itemData, itemImage: selectedImage!, completion: { error, data in
+                self.fetchItems()
+                DispatchQueue.main.async {
+                    self.createView.alpha = 0.0
+                    self.didPressAdd(self.addBtn)
+                    
+                }
+                
+                
+                
+            })
+            
+            
+        } else {
+            print("no user")
+        }
+        
     
+        
+
+        
+    }
+    
+    func fetchItems() {
+        NetworkingManager.shared().getItems(location: nil, distance: -1, completion: {error,data in
+            
+            if error == nil {
+                DataManager.shared().loadItems(data:data)
+                
+                DispatchQueue.main.async {
+                   
+                    self.collectionView.reloadData()
+                }
+                
+             
+            }
+        })
+    }
+    
+    func updateTopView() {
+        
+        if let theUser = DataManager.shared().user {
+            topViewUserNameLabel.text = theUser.name
+            let urlStr = theUser.userAvatar
+            if let imageUrl =  NetworkingManager.shared().getFullImageUrl(imageStr: urlStr){
+                topViewUserAvatar.kf.setImage(with: imageUrl) { result in
+                    switch result {
+                    case .success(let value):
+                        self.topViewUserAvatar.image = value.image
+                    case .failure(let error):
+                        print("Error: \(error)")}
+                }
+            }
+            
+            
+            
+        }
+        
+        
+        
+    }
     
 }
