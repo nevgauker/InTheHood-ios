@@ -238,8 +238,8 @@ class NetworkingManager: NSObject {
     //MARK: items
     
     //auth
-    func getItems(location:[String : String]?, distance: Float, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
-        
+    func getItems(location:[String : Double]?, distance: Float,type:String,category:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+       
         
 
         var params = ["distance" : distance,
@@ -251,7 +251,10 @@ class NetworkingManager: NSObject {
         }
         
     let urlStr = baseUrlStr  + "items"
-        
+    params["type"] = type
+    params["category"] = category
+
+
     Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
                 print("Progress: \(progress.fractionCompleted)")
@@ -264,7 +267,7 @@ class NetworkingManager: NSObject {
                 if response.error == nil {
                     if let dict = response.result.value as? Dictionary<String,AnyObject>{
                         if dict["error"] != nil {
-                            print(dict["error"] as! String)
+                            //print(dict["error"] as! String)
                             if  dict["error"] as! String == "Auth failed"{
                                 self.hanleAuthFail()
                             }
@@ -309,6 +312,64 @@ class NetworkingManager: NSObject {
         }, usingThreshold:UInt64.init(),
            to: urlStr, //URL Here
             method: .post,
+            headers: headers, //pass header dictionary here
+            encodingCompletion: { (result) in
+                
+                switch result {
+                case .success(let upload, _, _):
+                    print("the status code is :")
+                    
+                    upload.uploadProgress(closure: { (progress) in
+                        print("something")
+                    })
+                    
+                    upload.responseJSON { response in
+                        
+                        print("the resopnse code is : \(response.response?.statusCode)")
+                        print("the response is : \(response)")
+                        if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                            if dict["error"] != nil {
+                                print(dict["error"] as! String)
+                                if  dict["error"] as! String == "Auth failed"{
+                                    self.hanleAuthFail()
+                                }
+                                completion( dict["error"] as? String, nil)
+                            }else {
+                                completion(nil, dict)
+                            }
+                        } else {
+                            completion(nil, nil)
+                        }
+                    }
+                    break
+                case .failure(let encodingError):
+                    print("the error is  : \(encodingError.localizedDescription)")
+                    completion(encodingError.localizedDescription, nil)
+                    break
+                }
+        })
+    }
+    
+    func updateItem(_id:String,params:[String:String], itemImage:UIImage, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "items/item/" + _id
+        var headers = THE_API.defaultHeaders
+        headers["Content-type"] = nil
+        
+        let imgData:Data =  itemImage.jpegData(compressionQuality: 0.2)!
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            //Parameter for Upload files
+            
+            for (key, value) in params
+            {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+            multipartFormData.append(imgData, withName:  "itemImage", fileName: "itemImage.jpg", mimeType:  "image/jpeg")
+            
+        }, usingThreshold:UInt64.init(),
+           to: urlStr, //URL Here
+            method: .patch,
             headers: headers, //pass header dictionary here
             encodingCompletion: { (result) in
                 

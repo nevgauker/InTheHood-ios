@@ -37,3 +37,46 @@ extension UIView {
     }
 }
 
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
+ extension UITextView {
+     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Next", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+        
+        self.inputAccessoryView = toolbar
+    }
+    func addDoneToolbar(onDone: (target: Any, action: Selector)? = nil)  {
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+        
+        self.inputAccessoryView = toolbar
+    }
+    // Default actions:
+    @objc func doneButtonTapped() { self.resignFirstResponder() }
+    @objc func cancelButtonTapped() { self.resignFirstResponder() }
+}
+
+
+

@@ -11,37 +11,23 @@ import CoreLocation
 
 
 extension LocationManager: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
-        // create CLLocation from the coordinates of CLVisit
-        let clLocation = CLLocation(latitude: visit.coordinate.latitude, longitude: visit.coordinate.longitude)
-        
-        // Get location description
-        AppDelegate.geoCoder.reverseGeocodeLocation(clLocation) { placemarks, _ in
-            if let place = placemarks?.first {
-                let description = "\(place)"
-                self.newVisitReceived(visit, description: description)
-            }
-        }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
-    
-    func newVisitReceived(_ visit: CLVisit, description: String) {
-        let location = Location(visit: visit, descriptionString: description)
-        LocationsStorage.shared.saveLocationOnDisk(location)
-    
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             return
         }
         
-        AppDelegate.geoCoder.reverseGeocodeLocation(location) { placemarks, _ in
-            if let place = placemarks?.first {
-                let description = "Fake visit: \(place)"
-                
-               
-            }
-        }
+        current = location
+        
+//        AppDelegate.geoCoder.reverseGeocodeLocation(location) { placemarks, _ in
+//            if let place = placemarks?.first {
+//                let description = "Fake visit: \(place)"
+//
+//
+//            }
+//        }
     }
 }
 
@@ -50,6 +36,8 @@ class LocationManager: NSObject {
     
     
     let manager = CLLocationManager()
+    
+    var current:CLLocation?
 
 
     private static var sharedLocationManager: LocationManager = {
@@ -67,8 +55,13 @@ class LocationManager: NSObject {
     
     func startLocationTracking () {
         manager.requestAlwaysAuthorization()
-        manager.startMonitoringVisits()
+        
+        
+        manager.desiredAccuracy = kCLLocationAccuracyBest;
         manager.delegate = self
+
+        manager.startUpdatingLocation()
+        manager.requestLocation()
 
     }
     

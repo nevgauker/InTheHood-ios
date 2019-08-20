@@ -25,6 +25,9 @@ class GeneralItemCell: UICollectionViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
 
     
+    @IBOutlet weak var distanceLabel: UILabel!
+
+    
     
     func setCell(item:Item) {
         setData(item: item)
@@ -53,6 +56,7 @@ class GeneralItemCell: UICollectionViewCell {
         priceLabel.text = item.price + item.currency
         typeLabel.text = item.type
         categoryLabel.text = item.category
+        distanceLabel.text = item.distanceSringFrom(location: LocationManager.shared().current)
         
         if let imageUrl =  NetworkingManager.shared().getFullImageUrl(imageStr: item.itemImage){
             itemImage.kf.setImage(with: imageUrl) { result in

@@ -90,7 +90,16 @@ class DataManager: NSObject {
             }
         }
     }
-   
+    func indexForCategory(category:String)->Int {
+        if let cats = categories  {
+            for (index,val) in cats.enumerated() {
+                if val == category {
+                    return index
+                }
+            }
+        }
+        return 0
+    }
     
 
 }

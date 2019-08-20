@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class Item: NSObject {
     var _id = ""
@@ -56,9 +57,17 @@ class Item: NSObject {
         if let val = data["locationName"] as? String{
             locationName = val
         }
-        if let val = data["coordinates"] as? [Float]{
-           coordinates.append(contentsOf: val)
+        
+        if let dict = data["location"] as? [String : Any]{
+            if let val = dict["coordinates"] as? [NSNumber]{
+                let long = val[0].floatValue
+                let lat = val[1].floatValue
+                coordinates.append(long)
+                coordinates.append(lat)
+    
+            }
         }
+        
         if let val = data["type"] as? String{
             type = val
         }
@@ -76,6 +85,25 @@ class Item: NSObject {
             barterFor = val
         }
     }
-
     
+    func distanceSringFrom(location:CLLocation?)->String{
+        
+        
+        if let loc = location {
+            if coordinates.count >= 2 {
+                let coordinate₀ = loc
+                let coordinate₁ = CLLocation(latitude: CLLocationDegrees(coordinates[1]), longitude: CLLocationDegrees(coordinates[0]))
+                let distanceInMeters = coordinate₀.distance(from: coordinate₁) // result is in meters
+                
+                let x  = distanceInMeters.rounded(toPlaces: 3)
+                if x > 1000 {
+                    return String(x/1000) + " km from you"
+                }else {
+                    return String(x) + " m from you"
+                }
+            }
+        }
+        return ""
+        
+    }
 }
