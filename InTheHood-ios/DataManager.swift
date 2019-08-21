@@ -101,5 +101,20 @@ class DataManager: NSObject {
         return 0
     }
     
+    
+    func handldeMessages(dict:[String:Any])->[Message] {
+        var arr:[Message] = [Message]()
+        if let messagesData = dict["messages"] as? [[String : Any]] {
+            for data in messagesData
+            {
+                let message:Message = Message(data: data)
+                arr.append(message)
+            }
+        }
+        
+      return arr
+        
+    }
+    
 
 }

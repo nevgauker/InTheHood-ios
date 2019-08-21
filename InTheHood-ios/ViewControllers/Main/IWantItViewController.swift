@@ -14,7 +14,7 @@ extension IWantItViewController:UITextViewDelegate {
     
     
 }
-class IWantItViewController: UIViewController {
+class IWantItViewController: GeneralViewController {
 
     @IBOutlet weak var userView: UIView!
     @IBOutlet weak var itemTitleLabel: UILabel!
@@ -92,7 +92,28 @@ class IWantItViewController: UIViewController {
     
     
     @objc func didPressDone() {
-        dismiss(animated: true, completion: nil)
+        
+        if validate() {
+            startLoader()
+            
+            let params:[String : String] = ["text" : messegeTextView.text, "itemId" : item._id, "ownerId" : DataManager.shared().user!._id]
+
+            NetworkingManager.shared().createMessage(params: params, completion: { error, data in
+                
+                if error != nil {
+                    
+                    //error handling
+                    return
+                }
+              
+                self.dismiss(animated: true, completion: nil)
+
+            })
+
+            
+        }else  {
+            
+        }
         
     }
 
@@ -100,14 +121,20 @@ class IWantItViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func validate()->Bool {
+        
+        if  let text = messegeTextView.text {
+            if text.count  == 0 {
+                return false
+            }
+        }else {
+            return false
+        }
+        
+        
+        
+        return true
     }
-    */
-
+   
 }

@@ -222,6 +222,8 @@ class ItemViewController: GeneralViewController {
     
     var screen:ScreenType = .create
     var item:Item?
+    //for my item
+    var messages:[Message] = [Message]()
     
     
 
@@ -470,6 +472,9 @@ class ItemViewController: GeneralViewController {
             if screen == .edit  {
                 createCreateBtn.setTitle("Edit", for: .normal)
                 createCreateBtn.tag = 1
+                
+                //my item
+                fecthMessagesForMyItem()
             }
             if let obj = self.item {
                 createTitleTextField.text = obj.title
@@ -512,6 +517,28 @@ class ItemViewController: GeneralViewController {
         }
      
         
+    }
+    
+    
+    func fecthMessagesForMyItem() {
+    
+        if let theItem  = self.item {
+            NetworkingManager.shared().fetchMessagesByItem(_id: theItem._id, completion: { error, data in
+                if let d = data {
+                    let arr = DataManager.shared().handldeMessages(dict: d)
+                    self.messages.append(contentsOf: arr)
+                    
+                    
+                    //TBD GUI upadte
+                    
+                }
+                
+                
+                
+            })
+            
+        }
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

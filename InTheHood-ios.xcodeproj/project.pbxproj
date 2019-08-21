@@ -18,6 +18,7 @@
 		DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */; };
 		DC45BAD122DA3037003D0421 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAD022DA3037003D0421 /* LocationManager.swift */; };
 		DC45BAD322DA311D003D0421 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAD222DA311D003D0421 /* Location.swift */; };
+		DC76972F230D44AE008A247D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76972E230D44AE008A247D /* Message.swift */; };
 		DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */; };
 		DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FD22A8D8AF007B769B /* Extensions.swift */; };
 		DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720122A9236F007B769B /* MapKit.framework */; };
@@ -78,6 +79,7 @@
 		DC328D64229BF39B00693E17 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DC45BAD022DA3037003D0421 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DC45BAD222DA311D003D0421 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		DC76972E230D44AE008A247D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		DC9B71FD22A8D8AF007B769B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DC9B720122A9236F007B769B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 				DCA8B20122A50F640060E1A7 /* Item.swift */,
 				DCA8B20322A50F700060E1A7 /* User.swift */,
 				DC45BAD222DA311D003D0421 /* Location.swift */,
+				DC76972E230D44AE008A247D /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
 				DC2E34E42309D5300039415D /* IWantItViewController.swift in Sources */,
+				DC76972F230D44AE008A247D /* Message.swift in Sources */,
 				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,
 				DC13D74E22CCF52F008B6CEA /* ItemCell1.swift in Sources */,
 			);
