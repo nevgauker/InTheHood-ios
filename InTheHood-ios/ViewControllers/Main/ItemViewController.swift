@@ -204,6 +204,9 @@ class ItemViewController: GeneralViewController {
     
     @IBOutlet weak var createTypeSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var chatsBtn: UIButton!
+
     @IBOutlet weak var createCurrencyBtn: UIButton!
     @IBOutlet weak var createPriceTextField: UITextField!
     @IBOutlet weak var createBarterView: UIView!
@@ -223,7 +226,9 @@ class ItemViewController: GeneralViewController {
     var screen:ScreenType = .create
     var item:Item?
     //for my item
-    var messages:[Message] = [Message]()
+    var chats:[Chat] = [Chat]()
+    
+    //var messages:[Message] = [Message]()
     
     
 
@@ -242,6 +247,37 @@ class ItemViewController: GeneralViewController {
     }
     
     //MARK: actios
+    @IBAction func didPressChats(_ sender: Any) {
+        
+        
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "chatNav")
+        
+        let vc = (controller as! UINavigationController).viewControllers[0] as! ChatViewController
+        vc.type = ChatScreentType.ItemOwner
+        vc.itemId = item!._id
+        vc.itemOwnerId = item!.ownerId
+        self.present(controller, animated: true, completion: nil)
+        
+        
+    }
+
+    @IBAction func didPressDelete(_ sender: Any) {
+        
+        
+        NetworkingManager.shared().deleteItem(_id: self.item!._id, completion: {
+            error,data in
+            
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            }else {
+                
+            }
+            
+            
+        })
+        
+    }
     @IBAction func didPressCreateyBtn(_ sender: UIButton) {
         
         
@@ -262,7 +298,23 @@ class ItemViewController: GeneralViewController {
             }else if sender.tag == 2 {
                 //i want it
                 
-                performSegue(withIdentifier: "iwantitSegue", sender: self)
+                let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "chatNav")
+                
+                let vc = (controller as! UINavigationController).viewControllers[0] as! ChatViewController
+                
+
+                
+                vc.type = ChatScreentType.OtherUser
+                vc.itemId = item!._id
+                vc.itemOwnerId = item!.ownerId
+                vc.otherUserId = DataManager.shared().user!._id
+                
+                self.present(controller, animated: true, completion: nil)
+                
+                
+                
+               // performSegue(withIdentifier: "iwantitSegue", sender: self)
             }
            
             
@@ -455,7 +507,24 @@ class ItemViewController: GeneralViewController {
     }
 
     
-    
+    func fetchAllChats(){
+        NetworkingManager.shared().fetchChatsForItem(itemId: self.item!._id, itemOwnerId: self.item!.ownerId, completion: {
+            error, data in
+            if error == nil {
+                if let chatsData = data!["chats"] as? [[String : Any]] {
+                    for chatData in chatsData {
+                        let chat:Chat = Chat(data: chatData)
+                        self.chats.append(chat)
+                    }
+                }
+                
+                
+            }
+            
+            
+        })
+        
+    }
     func setScreenType() {
         if screen == .display || screen == .edit{
             if screen == .display  {
@@ -470,8 +539,12 @@ class ItemViewController: GeneralViewController {
                 
             }
             if screen == .edit  {
+                deleteBtn.isHidden = false
+                chatsBtn.isHidden = false
+
                 createCreateBtn.setTitle("Edit", for: .normal)
                 createCreateBtn.tag = 1
+                fetchAllChats()
                 
                 //my item
                 fecthMessagesForMyItem()
@@ -523,19 +596,19 @@ class ItemViewController: GeneralViewController {
     func fecthMessagesForMyItem() {
     
         if let theItem  = self.item {
-            NetworkingManager.shared().fetchMessagesByItem(_id: theItem._id, completion: { error, data in
-                if let d = data {
-                    let arr = DataManager.shared().handldeMessages(dict: d)
-                    self.messages.append(contentsOf: arr)
-                    
-                    
-                    //TBD GUI upadte
-                    
-                }
-                
-                
-                
-            })
+//            NetworkingManager.shared().fetchMessagesByItem(_id: theItem._id, completion: { error, data in
+//                if let d = data {
+//                    let arr = DataManager.shared().handldeMessages(dict: d)
+//                    self.messages.append(contentsOf: arr)
+//                    
+//                    
+//                    //TBD GUI upadte
+//                    
+//                }
+//                
+//                
+//                
+//            })
             
         }
       

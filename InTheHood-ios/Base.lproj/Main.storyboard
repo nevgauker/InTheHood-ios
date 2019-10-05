@@ -1008,6 +1008,36 @@
                                             <action selector="didPressCreateyBtn:" destination="CEZ-gg-hJg" eventType="touchUpInside" id="rga-Bi-I6Y"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLB-Tp-YpF">
+                                        <rect key="frame" x="50" y="727" width="50" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="GHT-HZ-pfN"/>
+                                            <constraint firstAttribute="height" constant="50" id="GUf-4B-5Pz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="39"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didPressDelete:" destination="CEZ-gg-hJg" eventType="touchUpInside" id="U43-4j-FCo"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjo-Th-hwF">
+                                        <rect key="frame" x="314" y="727" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="YND-Bu-icf"/>
+                                            <constraint firstAttribute="height" constant="50" id="deu-Pp-6ZY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="39"/>
+                                        <state key="normal" title="V">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didPressChats:" destination="CEZ-gg-hJg" eventType="touchUpInside" id="2z7-we-78q"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nNO-5H-8Ac" firstAttribute="top" secondItem="sq1-lO-p1r" secondAttribute="bottom" constant="9" id="5rk-4Q-UhG"/>
@@ -1022,6 +1052,7 @@
                                     <constraint firstItem="t6t-ZN-tZV" firstAttribute="centerX" secondItem="lgk-Nz-T7u" secondAttribute="centerX" id="Bfh-MW-96H"/>
                                     <constraint firstItem="yxq-Dg-Xhc" firstAttribute="top" secondItem="O9N-fQ-9Vq" secondAttribute="bottom" constant="12.666666666666629" id="CXl-2l-bTg"/>
                                     <constraint firstItem="PKT-6d-X8n" firstAttribute="top" secondItem="Qrx-hr-VCS" secondAttribute="bottom" constant="61" id="Edu-zS-Prv"/>
+                                    <constraint firstItem="YLB-Tp-YpF" firstAttribute="top" secondItem="IFp-fw-vFB" secondAttribute="bottom" constant="44.666666666666629" id="FFp-mC-5Y9"/>
                                     <constraint firstItem="IFp-fw-vFB" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="GcT-Vd-abH"/>
                                     <constraint firstItem="3PT-qq-LKf" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="IRw-pD-nZC"/>
                                     <constraint firstItem="l2j-bE-74O" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="129" id="JT5-dg-0tL"/>
@@ -1038,11 +1069,14 @@
                                     <constraint firstItem="ceV-zt-mvL" firstAttribute="top" secondItem="Qrx-hr-VCS" secondAttribute="bottom" constant="61" id="eiF-Rl-rnH"/>
                                     <constraint firstItem="3PT-qq-LKf" firstAttribute="width" secondItem="ceV-zt-mvL" secondAttribute="width" id="g37-t3-IZx"/>
                                     <constraint firstItem="O9N-fQ-9Vq" firstAttribute="top" secondItem="EGm-d3-rev" secondAttribute="bottom" constant="7" id="ivK-kc-EBe"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zjo-Th-hwF" secondAttribute="trailing" constant="50" id="jD6-W1-Mo8"/>
                                     <constraint firstItem="EGm-d3-rev" firstAttribute="width" secondItem="t6t-ZN-tZV" secondAttribute="width" id="kVj-Jw-jeU"/>
                                     <constraint firstItem="O9N-fQ-9Vq" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="ndy-dO-hle"/>
                                     <constraint firstItem="Qrx-hr-VCS" firstAttribute="top" secondItem="axr-Vd-Htb" secondAttribute="bottom" constant="11.333333333333314" id="oN6-ld-dHA"/>
+                                    <constraint firstItem="Zjo-Th-hwF" firstAttribute="top" secondItem="IFp-fw-vFB" secondAttribute="bottom" constant="44.666666666666629" id="oyF-zr-qzi"/>
                                     <constraint firstItem="axr-Vd-Htb" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="pj0-g7-4X7"/>
                                     <constraint firstItem="nNO-5H-8Ac" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="rz9-Ca-hBk"/>
+                                    <constraint firstItem="YLB-Tp-YpF" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="50" id="tRQ-RX-SYK"/>
                                     <constraint firstItem="Qrx-hr-VCS" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="urA-Hr-X6K"/>
                                     <constraint firstItem="EGm-d3-rev" firstAttribute="top" secondItem="t6t-ZN-tZV" secondAttribute="bottom" constant="-236" id="v85-YE-iDG"/>
                                     <constraint firstItem="EGm-d3-rev" firstAttribute="height" secondItem="t6t-ZN-tZV" secondAttribute="height" id="vl6-Kt-Rri"/>
@@ -1078,6 +1112,7 @@
                     </view>
                     <connections>
                         <outlet property="barterViewHeight" destination="tIU-JA-MeR" id="CPB-iN-jF6"/>
+                        <outlet property="chatsBtn" destination="Zjo-Th-hwF" id="YWL-VH-W61"/>
                         <outlet property="createBarterTextView" destination="jhF-Kn-tgd" id="zcb-XL-lYC"/>
                         <outlet property="createBarterView" destination="nNO-5H-8Ac" id="c6B-V1-7tg"/>
                         <outlet property="createCategoryCollectionView" destination="IFp-fw-vFB" id="ETH-0P-nr5"/>
@@ -1090,6 +1125,7 @@
                         <outlet property="createTitleTextField" destination="yxq-Dg-Xhc" id="ynG-uX-l54"/>
                         <outlet property="createTypeSegmentedControl" destination="Qrx-hr-VCS" id="M4g-iA-7kt"/>
                         <outlet property="createUserAvatar" destination="t6t-ZN-tZV" id="tfs-9Y-gMb"/>
+                        <outlet property="deleteBtn" destination="YLB-Tp-YpF" id="BAm-rc-yYB"/>
                         <segue destination="8oT-oo-u4M" kind="presentation" identifier="iwantitSegue" id="iFM-qc-AFt"/>
                     </connections>
                 </viewController>

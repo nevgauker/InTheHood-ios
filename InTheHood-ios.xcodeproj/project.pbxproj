@@ -23,6 +23,10 @@
 		DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FD22A8D8AF007B769B /* Extensions.swift */; };
 		DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720122A9236F007B769B /* MapKit.framework */; };
 		DC9B720422A92421007B769B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720322A92421007B769B /* CoreLocation.framework */; };
+		DC9D0AE62332927C00ADEBCF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D0AE52332927C00ADEBCF /* ChatViewController.swift */; };
+		DC9D0AE8233292D000ADEBCF /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC9D0AE7233292D000ADEBCF /* Chat.storyboard */; };
+		DC9D0AEA233293D200ADEBCF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */; };
+		DC9D0AEC23329C1A00ADEBCF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D0AEB23329C1A00ADEBCF /* Chat.swift */; };
 		DCA353B82306BB4B007B7B97 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA353B72306BB4B007B7B97 /* ItemViewController.swift */; };
 		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
 		DCA8B20222A50F640060E1A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20122A50F640060E1A7 /* Item.swift */; };
@@ -84,6 +88,10 @@
 		DC9B71FD22A8D8AF007B769B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DC9B720122A9236F007B769B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC9B720322A92421007B769B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DC9D0AE52332927C00ADEBCF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		DC9D0AE7233292D000ADEBCF /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		DC9D0AEB23329C1A00ADEBCF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		DCA353B72306BB4B007B7B97 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DCA8B20122A50F640060E1A7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -164,9 +172,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC9D0AE42332924900ADEBCF /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				DC9D0AE52332927C00ADEBCF /* ChatViewController.swift */,
+				DC9D0AE7233292D000ADEBCF /* Chat.storyboard */,
+				DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		DCA8B1F722A5067C0060E1A7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DC9D0AE42332924900ADEBCF /* Chat */,
 				DCA8B1FB22A507040060E1A7 /* GeneralViews */,
 				DCA8B1F922A506DA0060E1A7 /* Main */,
 				DCA8B1F822A506CB0060E1A7 /* SignInUp */,
@@ -223,6 +242,7 @@
 				DCA8B20322A50F700060E1A7 /* User.swift */,
 				DC45BAD222DA311D003D0421 /* Location.swift */,
 				DC76972E230D44AE008A247D /* Message.swift */,
+				DC9D0AEB23329C1A00ADEBCF /* Chat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +417,7 @@
 			files = (
 				DCE6FFEB229BCAE2003A6626 /* LaunchScreen.storyboard in Resources */,
 				DCE6FFE8229BCAE2003A6626 /* Assets.xcassets in Resources */,
+				DC9D0AE8233292D000ADEBCF /* Chat.storyboard in Resources */,
 				DCE6FFE6229BCAE1003A6626 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +540,7 @@
 				DCA8B20422A50F700060E1A7 /* User.swift in Sources */,
 				DC328D61229BD6E200693E17 /* SigninViewController.swift in Sources */,
 				DCA8B20222A50F640060E1A7 /* Item.swift in Sources */,
+				DC9D0AEA233293D200ADEBCF /* ChatTableViewCell.swift in Sources */,
 				DCA353B82306BB4B007B7B97 /* ItemViewController.swift in Sources */,
 				DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */,
 				DC45BAD122DA3037003D0421 /* LocationManager.swift in Sources */,
@@ -526,8 +548,10 @@
 				DC13D75022CCF545008B6CEA /* ItemCell2.swift in Sources */,
 				DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
+				DC9D0AE62332927C00ADEBCF /* ChatViewController.swift in Sources */,
 				DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
+				DC9D0AEC23329C1A00ADEBCF /* Chat.swift in Sources */,
 				DC2E34E42309D5300039415D /* IWantItViewController.swift in Sources */,
 				DC76972F230D44AE008A247D /* Message.swift in Sources */,
 				DCFB47E322A435D700D0E7AA /* CategoryCell.swift in Sources */,

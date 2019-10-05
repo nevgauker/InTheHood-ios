@@ -9,23 +9,14 @@
 import UIKit
 
 class Message: NSObject {
-    var _id = ""
-    var ownerId = ""
-    var itemId = ""
     var text = ""
-
+    var userId = ""
     init(data:[String:Any]) {
-        if let val = data["_id"] {
-            _id = val as! String
-        }
-        if let val = data["ownerId"] {
-            ownerId = val  as! String
-        }
-        if let val = data["itemId"] {
-            itemId = val  as! String
-        }
         if let val = data["text"] {
             text = val  as! String
+        }
+        if let val = data["userId"] {
+            userId = val  as! String
         }
        
     }

@@ -98,17 +98,17 @@ class IWantItViewController: GeneralViewController {
             
             let params:[String : String] = ["text" : messegeTextView.text, "itemId" : item._id, "ownerId" : DataManager.shared().user!._id]
 
-            NetworkingManager.shared().createMessage(params: params, completion: { error, data in
-                
-                if error != nil {
-                    
-                    //error handling
-                    return
-                }
-              
-                self.dismiss(animated: true, completion: nil)
-
-            })
+//            NetworkingManager.shared().createMessage(params: params, completion: { error, data in
+//                
+//                if error != nil {
+//                    
+//                    //error handling
+//                    return
+//                }
+//              
+//                self.dismiss(animated: true, completion: nil)
+//
+//            })
 
             
         }else  {

@@ -289,6 +289,44 @@ class NetworkingManager: NSObject {
                 }
         }
     }
+    
+    func deleteItem(_id:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        
+        let urlStr = baseUrlStr  + "items/item/" + _id
+
+        var headers = THE_API.defaultHeaders
+        headers["Content-type"] = nil
+        Alamofire.request(urlStr, method: .delete, parameters: nil, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil {
+                            //print(dict["error"] as! String)
+                            if  dict["error"] as! String == "Auth failed"{
+                                self.hanleAuthFail()
+                            }
+                            completion( dict["error"] as? String, nil)
+                        }else {
+                            completion( nil, dict)
+                        }
+                    } else {
+                        completion(nil, nil)
+                    }
+                }else {
+                    print(response.error?.localizedDescription ?? "")
+                    completion(response.error?.localizedDescription, nil)
+                    
+                }
+        }
+    }
 
     
     
@@ -297,7 +335,7 @@ class NetworkingManager: NSObject {
         let urlStr = baseUrlStr  + "items/item/add"
         var headers = THE_API.defaultHeaders
         headers["Content-type"] = nil
-
+    
         let imgData:Data =  itemImage.jpegData(compressionQuality: 0.2)!
         
         Alamofire.upload(multipartFormData: { multipartFormData in
@@ -412,12 +450,271 @@ class NetworkingManager: NSObject {
     
     
     //MARK: messages
+//
+//    func createMessage(params:[String:String], completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+//
+//        let urlStr = baseUrlStr  + "messages/message/add"
+//        var headers = THE_API.defaultHeaders
+//        headers["Content-type"] = nil
+//
+//        Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+//            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+//                print("Progress: \(progress.fractionCompleted)")
+//            }
+//            .validate { request, response, data in
+//                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+//                return .success
+//            }
+//            .responseJSON { response in
+//                if response.error == nil {
+//                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+//                        if dict["error"] != nil {
+//                            //print(dict["error"] as! String)
+//                            if  dict["error"] as! String == "Auth failed"{
+//                                self.hanleAuthFail()
+//                            }
+//                            completion( dict["error"] as? String, nil)
+//                        }else {
+//                            completion( nil, dict)
+//                        }
+//                    } else {
+//                        completion(nil, nil)
+//                    }
+//
+//
+//                }else {
+//                    print(response.error?.localizedDescription ?? "")
+//                    completion(response.error?.localizedDescription, nil)
+//
+//                }
+//        }
+//    }
     
-    func createMessage(params:[String:String], completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+//    func fetchMessagesByOwner(_id:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+//
+//        let urlStr = baseUrlStr  + "messages/owner/" + _id
+//        var headers = THE_API.defaultHeaders
+//        headers["Content-type"] = nil
+//
+//        Alamofire.request(urlStr, method: .get, parameters: nil, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+//            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+//                print("Progress: \(progress.fractionCompleted)")
+//            }
+//            .validate { request, response, data in
+//                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+//                return .success
+//            }
+//            .responseJSON { response in
+//                if response.error == nil {
+//                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+//                        if dict["error"] != nil {
+//                            //print(dict["error"] as! String)
+//                            if  dict["error"] as! String == "Auth failed"{
+//                                self.hanleAuthFail()
+//                            }
+//                            completion( dict["error"] as? String, nil)
+//                        }else {
+//                            completion( nil, dict)
+//                        }
+//                    } else {
+//                        completion(nil, nil)
+//                    }
+//
+//
+//                }else {
+//                    print(response.error?.localizedDescription ?? "")
+//                    completion(response.error?.localizedDescription, nil)
+//
+//                }
+//        }
+//    }
+//
+//    
+//    func fetchMessagesByItem(_id:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+//        
+//        let urlStr = baseUrlStr  + "messages/item/" + _id
+//        var headers = THE_API.defaultHeaders
+//        headers["Content-type"] = nil
+//        
+//        Alamofire.request(urlStr, method: .get, parameters: nil, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+//            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+//                print("Progress: \(progress.fractionCompleted)")
+//            }
+//            .validate { request, response, data in
+//                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+//                return .success
+//            }
+//            .responseJSON { response in
+//                if response.error == nil {
+//                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+//                        if dict["error"] != nil {
+//                            //print(dict["error"] as! String)
+//                            if  dict["error"] as! String == "Auth failed"{
+//                                self.hanleAuthFail()
+//                            }
+//                            completion( dict["error"] as? String, nil)
+//                        }else {
+//                            completion( nil, dict)
+//                        }
+//                    } else {
+//                        completion(nil, nil)
+//                    }
+//                    
+//                    
+//                }else {
+//                    print(response.error?.localizedDescription ?? "")
+//                    completion(response.error?.localizedDescription, nil)
+//                    
+//                }
+//        }
+//    }
+    
+
+    //MARK: helpers
+    private func hanleAuthFail() {
+        _ = DataManager.shared().deleteToken()
+        _ = DataManager.shared().deleteUser()
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setRootSigninViewController()
+    }
         
-        let urlStr = baseUrlStr  + "messages/message/add"
-        var headers = THE_API.defaultHeaders
-        headers["Content-type"] = nil
+    func signOut() {
+        hanleAuthFail()
+    }
+        
+    func getFullImageUrl(imageStr:String)->URL? {
+        let str  = baseUrlStr + imageStr
+        return URL(string: str)
+    }
+    
+    
+//    var _id = ""
+//    var itemId = ""
+//    var itemOwnerId = ""
+//    var otherUserId = ""
+    
+    
+    func fetchChat(itemId:String, itemOwnerId:String, otherUserId:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "chats/chat"
+        let params = [ "itemId" : itemId, "otherUserId" : otherUserId, "itemOwnerId" : itemOwnerId]
+        
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil {
+                            if  dict["error"] as! String == "Auth failed"{
+                                self.hanleAuthFail()
+                            }
+                            completion( dict["error"] as? String, nil)
+                        }else {
+                            completion( nil, dict)
+                        }
+                    } else {
+                        completion(nil, nil)
+                    }
+                }else {
+                    print(response.error?.localizedDescription ?? "")
+                    completion(response.error?.localizedDescription, nil)
+                    
+                }
+        }
+    }
+    
+    func fetchChatsForItem(itemId:String, itemOwnerId:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "chats"
+        let params = [ "itemId" : itemId, "itemOwnerId" : itemOwnerId]
+        
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil {
+                            if  dict["error"] as! String == "Auth failed"{
+                                self.hanleAuthFail()
+                            }
+                            completion( dict["error"] as? String, nil)
+                        }else {
+                            completion( nil, dict)
+                        }
+                    } else {
+                        completion(nil, nil)
+                    }
+                }else {
+                    print(response.error?.localizedDescription ?? "")
+                    completion(response.error?.localizedDescription, nil)
+                    
+                }
+        }
+    }
+    
+    func createChat(itemId:String,itemOwnerId:String,otherUserId:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "chats/chat/add"
+        
+        
+        let params:[String : Any] = ["itemId" : itemId, "itemOwnerId" : itemOwnerId, "otherUserId" : otherUserId]
+        
+     
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil {
+                            //print(dict["error"] as! String)
+                            if  dict["error"] as! String == "Auth failed"{
+                                self.hanleAuthFail()
+                            }
+                            completion( dict["error"] as? String, nil)
+                        }else {
+                            completion( nil, dict)
+                        }
+                    } else {
+                        completion(nil, nil)
+                    }
+                    
+                    
+                }else {
+                    print(response.error?.localizedDescription ?? "")
+                    completion(response.error?.localizedDescription, nil)
+                    
+                }
+        }
+    }
+    
+    
+    
+    
+    
+    func addMessageToChat(_id:String,userId:String, text:String ,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+        
+        let urlStr = baseUrlStr  + "chats/chat/\(_id)"
+        let params:[String : Any] = ["text" : text, "userId" : userId]
+        
         
         Alamofire.request(urlStr, method: .post, parameters: params, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
@@ -452,107 +749,8 @@ class NetworkingManager: NSObject {
         }
     }
     
-    func fetchMessagesByOwner(_id:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
-        
-        let urlStr = baseUrlStr  + "messages/owner/" + _id
-        var headers = THE_API.defaultHeaders
-        headers["Content-type"] = nil
-        
-        Alamofire.request(urlStr, method: .get, parameters: nil, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
-            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
-                print("Progress: \(progress.fractionCompleted)")
-            }
-            .validate { request, response, data in
-                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
-                return .success
-            }
-            .responseJSON { response in
-                if response.error == nil {
-                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
-                        if dict["error"] != nil {
-                            //print(dict["error"] as! String)
-                            if  dict["error"] as! String == "Auth failed"{
-                                self.hanleAuthFail()
-                            }
-                            completion( dict["error"] as? String, nil)
-                        }else {
-                            completion( nil, dict)
-                        }
-                    } else {
-                        completion(nil, nil)
-                    }
-                    
-                    
-                }else {
-                    print(response.error?.localizedDescription ?? "")
-                    completion(response.error?.localizedDescription, nil)
-                    
-                }
-        }
-    }
     
     
-    func fetchMessagesByItem(_id:String,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
-        
-        let urlStr = baseUrlStr  + "messages/item/" + _id
-        var headers = THE_API.defaultHeaders
-        headers["Content-type"] = nil
-        
-        Alamofire.request(urlStr, method: .get, parameters: nil, encoding:  JSONEncoding.default, headers: THE_API.defaultHeaders)
-            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
-                print("Progress: \(progress.fractionCompleted)")
-            }
-            .validate { request, response, data in
-                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
-                return .success
-            }
-            .responseJSON { response in
-                if response.error == nil {
-                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
-                        if dict["error"] != nil {
-                            //print(dict["error"] as! String)
-                            if  dict["error"] as! String == "Auth failed"{
-                                self.hanleAuthFail()
-                            }
-                            completion( dict["error"] as? String, nil)
-                        }else {
-                            completion( nil, dict)
-                        }
-                    } else {
-                        completion(nil, nil)
-                    }
-                    
-                    
-                }else {
-                    print(response.error?.localizedDescription ?? "")
-                    completion(response.error?.localizedDescription, nil)
-                    
-                }
-        }
-    }
     
-
-    //MARK: helpers
-    private func hanleAuthFail() {
-        DataManager.shared().deleteToken()
-        DataManager.shared().deleteUser()
-
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setRootSigninViewController()
-    }
-        
-    func signOut() {
-        hanleAuthFail()
-    }
-        
-    func getFullImageUrl(imageStr:String)->URL? {
-        let str  = baseUrlStr + imageStr
-        return URL(string: str)
-    }
-       
-                
-                
-        
-
 
 }
