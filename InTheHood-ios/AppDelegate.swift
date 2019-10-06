@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
+
 
 
 @UIApplicationMain
@@ -22,6 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NetworkingManager.shared().getCategories()
         LocationManager.shared().startLocationTracking()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+
+            if error == nil {
+                if granted {
+                    
+                    //save token in user
+                    
+                }
+            }
+            
+        }
+        application.registerForRemoteNotifications()
         
         DataManager.shared().loadData {
             if DataManager.shared().token != nil {

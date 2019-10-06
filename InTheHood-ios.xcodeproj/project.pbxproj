@@ -31,6 +31,9 @@
 		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
 		DCA8B20222A50F640060E1A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20122A50F640060E1A7 /* Item.swift */; };
 		DCA8B20422A50F700060E1A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20322A50F700060E1A7 /* User.swift */; };
+		DCBE17BF2348DE5D00A5B15E /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBE17BD2348DE5C00A5B15E /* UserNotificationsUI.framework */; };
+		DCBE17C02348DE5D00A5B15E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBE17BE2348DE5C00A5B15E /* UserNotifications.framework */; };
+		DCBE17C2234A873900A5B15E /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBE17C1234A873900A5B15E /* ChatCollectionViewCell.swift */; };
 		DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */; };
 		DCE60001229BCAE2003A6626 /* InTheHood_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE60000229BCAE2003A6626 /* InTheHood_iosUITests.swift */; };
 		DCE6FFE1229BCAE1003A6626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */; };
@@ -96,6 +99,10 @@
 		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DCA8B20122A50F640060E1A7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DCA8B20322A50F700060E1A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DCBE17BC2348D89200A5B15E /* InTheHood-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "InTheHood-ios.entitlements"; sourceTree = "<group>"; };
+		DCBE17BD2348DE5C00A5B15E /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		DCBE17BE2348DE5C00A5B15E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		DCBE17C1234A873900A5B15E /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCCF8E39229C1F0600F13C8D /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		DCE60000229BCAE2003A6626 /* InTheHood_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheHood_iosUITests.swift; sourceTree = "<group>"; };
 		DCE60002229BCAE2003A6626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +129,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCBE17BF2348DE5D00A5B15E /* UserNotificationsUI.framework in Frameworks */,
+				DCBE17C02348DE5D00A5B15E /* UserNotifications.framework in Frameworks */,
 				DC9B720422A92421007B769B /* CoreLocation.framework in Frameworks */,
 				DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */,
 				8473FD848EF99A699957B75F /* Pods_InTheHood_ios.framework in Frameworks */,
@@ -163,6 +172,8 @@
 		1D7FECE4D76F36BC68AF1A2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCBE17BE2348DE5C00A5B15E /* UserNotifications.framework */,
+				DCBE17BD2348DE5C00A5B15E /* UserNotificationsUI.framework */,
 				DC9B720322A92421007B769B /* CoreLocation.framework */,
 				DC9B720122A9236F007B769B /* MapKit.framework */,
 				633983780CA0739513D6FC7E /* Pods_InTheHood_ios.framework */,
@@ -178,6 +189,7 @@
 				DC9D0AE52332927C00ADEBCF /* ChatViewController.swift */,
 				DC9D0AE7233292D000ADEBCF /* Chat.storyboard */,
 				DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */,
+				DCBE17C1234A873900A5B15E /* ChatCollectionViewCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -272,6 +284,7 @@
 		DCE6FFDF229BCAE1003A6626 /* InTheHood-ios */ = {
 			isa = PBXGroup;
 			children = (
+				DCBE17BC2348D89200A5B15E /* InTheHood-ios.entitlements */,
 				DCA8B1FE22A50EFB0060E1A7 /* Model */,
 				DCA8B1F722A5067C0060E1A7 /* ViewControllers */,
 				DCE6FFE0229BCAE1003A6626 /* AppDelegate.swift */,
@@ -379,6 +392,11 @@
 				TargetAttributes = {
 					DCE6FFDC229BCAE1003A6626 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					DCE6FFF0229BCAE2003A6626 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -531,6 +549,7 @@
 			files = (
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DC13D75222CCF5EC008B6CEA /* GeneralItemCell.swift in Sources */,
+				DCBE17C2234A873900A5B15E /* ChatCollectionViewCell.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
 				DCF4FF5822A851F80065FE63 /* DataManager.swift in Sources */,
@@ -731,6 +750,7 @@
 			baseConfigurationReference = 8E848F4F1729EBE574E6B300 /* Pods-InTheHood-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "InTheHood-ios/InTheHood-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3978JEAFBL;
 				INFOPLIST_FILE = "InTheHood-ios/Info.plist";
@@ -750,6 +770,7 @@
 			baseConfigurationReference = A4D04A4FA13502024C936163 /* Pods-InTheHood-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "InTheHood-ios/InTheHood-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3978JEAFBL;
 				INFOPLIST_FILE = "InTheHood-ios/Info.plist";

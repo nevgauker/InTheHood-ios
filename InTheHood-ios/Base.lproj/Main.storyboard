@@ -1023,12 +1023,12 @@
                                             <action selector="didPressDelete:" destination="CEZ-gg-hJg" eventType="touchUpInside" id="U43-4j-FCo"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjo-Th-hwF">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjo-Th-hwF">
                                         <rect key="frame" x="314" y="727" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="YND-Bu-icf"/>
-                                            <constraint firstAttribute="height" constant="50" id="deu-Pp-6ZY"/>
+                                            <constraint firstAttribute="width" constant="50" id="48f-44-yst"/>
+                                            <constraint firstAttribute="height" constant="50" id="77f-MF-ZfU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="39"/>
                                         <state key="normal" title="V">
@@ -1063,17 +1063,17 @@
                                     <constraint firstItem="sq1-lO-p1r" firstAttribute="width" secondItem="PKT-6d-X8n" secondAttribute="width" id="OS3-EA-75p"/>
                                     <constraint firstItem="EGm-d3-rev" firstAttribute="leading" secondItem="t6t-ZN-tZV" secondAttribute="trailing" constant="-239" id="Oj2-yW-yql"/>
                                     <constraint firstAttribute="trailing" secondItem="t6t-ZN-tZV" secondAttribute="trailing" constant="149.33333333333337" id="S6M-7A-W9u"/>
+                                    <constraint firstItem="Zjo-Th-hwF" firstAttribute="baseline" secondItem="YLB-Tp-YpF" secondAttribute="baseline" id="TCX-oK-bxz"/>
                                     <constraint firstItem="sq1-lO-p1r" firstAttribute="top" secondItem="PKT-6d-X8n" secondAttribute="bottom" constant="8" id="TUX-Uk-Pr7"/>
                                     <constraint firstItem="4mc-8J-c74" firstAttribute="centerX" secondItem="lgk-Nz-T7u" secondAttribute="centerX" id="ZGe-zR-MFu"/>
+                                    <constraint firstItem="Zjo-Th-hwF" firstAttribute="leading" secondItem="4mc-8J-c74" secondAttribute="trailing" constant="39" id="Zgs-Ek-LUJ"/>
                                     <constraint firstItem="7E3-xa-nc4" firstAttribute="top" secondItem="nNO-5H-8Ac" secondAttribute="bottom" constant="17" id="bcy-TN-SzF"/>
                                     <constraint firstItem="ceV-zt-mvL" firstAttribute="top" secondItem="Qrx-hr-VCS" secondAttribute="bottom" constant="61" id="eiF-Rl-rnH"/>
                                     <constraint firstItem="3PT-qq-LKf" firstAttribute="width" secondItem="ceV-zt-mvL" secondAttribute="width" id="g37-t3-IZx"/>
                                     <constraint firstItem="O9N-fQ-9Vq" firstAttribute="top" secondItem="EGm-d3-rev" secondAttribute="bottom" constant="7" id="ivK-kc-EBe"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zjo-Th-hwF" secondAttribute="trailing" constant="50" id="jD6-W1-Mo8"/>
                                     <constraint firstItem="EGm-d3-rev" firstAttribute="width" secondItem="t6t-ZN-tZV" secondAttribute="width" id="kVj-Jw-jeU"/>
                                     <constraint firstItem="O9N-fQ-9Vq" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="ndy-dO-hle"/>
                                     <constraint firstItem="Qrx-hr-VCS" firstAttribute="top" secondItem="axr-Vd-Htb" secondAttribute="bottom" constant="11.333333333333314" id="oN6-ld-dHA"/>
-                                    <constraint firstItem="Zjo-Th-hwF" firstAttribute="top" secondItem="IFp-fw-vFB" secondAttribute="bottom" constant="44.666666666666629" id="oyF-zr-qzi"/>
                                     <constraint firstItem="axr-Vd-Htb" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="pj0-g7-4X7"/>
                                     <constraint firstItem="nNO-5H-8Ac" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="87" id="rz9-Ca-hBk"/>
                                     <constraint firstItem="YLB-Tp-YpF" firstAttribute="leading" secondItem="lgk-Nz-T7u" secondAttribute="leading" constant="50" id="tRQ-RX-SYK"/>

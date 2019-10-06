@@ -257,6 +257,7 @@ class ItemViewController: GeneralViewController {
         vc.type = ChatScreentType.ItemOwner
         vc.itemId = item!._id
         vc.itemOwnerId = item!.ownerId
+        vc.item = self.item
         self.present(controller, animated: true, completion: nil)
         
         
@@ -309,6 +310,7 @@ class ItemViewController: GeneralViewController {
                 vc.itemId = item!._id
                 vc.itemOwnerId = item!.ownerId
                 vc.otherUserId = DataManager.shared().user!._id
+                vc.item = self.item
                 
                 self.present(controller, animated: true, completion: nil)
                 
