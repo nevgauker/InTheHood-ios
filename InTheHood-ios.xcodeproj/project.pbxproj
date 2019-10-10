@@ -27,6 +27,7 @@
 		DC9D0AE8233292D000ADEBCF /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC9D0AE7233292D000ADEBCF /* Chat.storyboard */; };
 		DC9D0AEA233293D200ADEBCF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */; };
 		DC9D0AEC23329C1A00ADEBCF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D0AEB23329C1A00ADEBCF /* Chat.swift */; };
+		DCA3089F234D75240028A617 /* NotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA3089E234D75240028A617 /* NotificationsHandler.swift */; };
 		DCA353B82306BB4B007B7B97 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA353B72306BB4B007B7B97 /* ItemViewController.swift */; };
 		DCA8B1FD22A509930060E1A7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B1FC22A509930060E1A7 /* Utils.swift */; };
 		DCA8B20222A50F640060E1A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8B20122A50F640060E1A7 /* Item.swift */; };
@@ -95,6 +96,7 @@
 		DC9D0AE7233292D000ADEBCF /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		DC9D0AE9233293D200ADEBCF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		DC9D0AEB23329C1A00ADEBCF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		DCA3089E234D75240028A617 /* NotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
 		DCA353B72306BB4B007B7B97 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		DCA8B1FC22A509930060E1A7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DCA8B20122A50F640060E1A7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				DCF4FF5722A851F80065FE63 /* DataManager.swift */,
 				DC9B71FD22A8D8AF007B769B /* Extensions.swift */,
 				DC45BAD022DA3037003D0421 /* LocationManager.swift */,
+				DCA3089E234D75240028A617 /* NotificationsHandler.swift */,
 			);
 			path = "InTheHood-ios";
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 			files = (
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DC13D75222CCF5EC008B6CEA /* GeneralItemCell.swift in Sources */,
+				DCA3089F234D75240028A617 /* NotificationsHandler.swift in Sources */,
 				DCBE17C2234A873900A5B15E /* ChatCollectionViewCell.swift in Sources */,
 				DCFB47DD22A4306700D0E7AA /* MainSuperView.swift in Sources */,
 				DC328D65229BF39B00693E17 /* ForgotPasswordViewController.swift in Sources */,
@@ -754,6 +758,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3978JEAFBL;
 				INFOPLIST_FILE = "InTheHood-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -774,6 +779,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3978JEAFBL;
 				INFOPLIST_FILE = "InTheHood-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

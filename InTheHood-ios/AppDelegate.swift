@@ -99,6 +99,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data){
+        _ = DataManager.shared().savePushToken(token: deviceToken.map { String(format: "%02x", $0) }.joined())
+        DataManager.shared().needToUpdatePushToken = true 
+        
+    }
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error){
+        
+    }
+    
+
+    
     
     
 

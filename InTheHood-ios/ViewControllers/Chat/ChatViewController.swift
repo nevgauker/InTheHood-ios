@@ -118,6 +118,11 @@ class ChatViewController: UIViewController {
         setTopView()
         fetchData()
         textInputTextField.becomeFirstResponder()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(didReciveNewMessage), name: Notification.Name("newMessage"), object: nil)
+
+
      
     }
     
@@ -300,5 +305,8 @@ class ChatViewController: UIViewController {
                 self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
+    }
+    @objc func didReciveNewMessage(){
+        
     }
 }

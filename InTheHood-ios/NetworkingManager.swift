@@ -10,7 +10,8 @@
 import Alamofire
 
 class API: NSObject {
-    let baseURLDEV = "http://localhost:3004/"
+    //let baseURLDEV = "http://localhost:3004/"
+    let baseURLDEV = "http://192.168.179.146:3004/"
     let baseURLPROD = "https://inthehoodapi.herokuapp.com/"
     var defaultHeaders:HTTPHeaders = HTTPHeaders()
 }
@@ -200,6 +201,37 @@ class NetworkingManager: NSObject {
                     }
                 }else {
                      completion(response.error?.localizedDescription, nil)
+                }
+        }
+    }
+    //update my user push token
+    func updateMyUserPush(email:String,token:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()){
+        let urlStr = baseUrlStr  + "users/user/me/push"
+        let params = ["email": email, "pushToken":token]
+        let headers = self.THE_API.defaultHeaders
+        
+        Alamofire.request(urlStr, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                // Custom evaluation closure now includes data (allows you to parse data to dig out error messages if necessary)
+                return .success
+            }
+            .responseJSON { response in
+                if response.error == nil {
+                    if let dict = response.result.value as? Dictionary<String,AnyObject>{
+                        if dict["error"] != nil && dict["error"] as! String == "Auth failed" {
+                            self.hanleAuthFail()
+                            completion(dict["error"] as? String, nil)
+                        }else {
+                            completion(nil,dict)
+                        }
+                    }else {
+                        completion(nil, nil)
+                    }
+                }else {
+                    completion(response.error?.localizedDescription, nil)
                 }
         }
     }
@@ -713,6 +745,8 @@ class NetworkingManager: NSObject {
     func addMessageToChat(_id:String,userId:String, text:String ,completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
         
         let urlStr = baseUrlStr  + "chats/chat/\(_id)"
+       
+
         let params:[String : Any] = ["text" : text, "userId" : userId]
         
         

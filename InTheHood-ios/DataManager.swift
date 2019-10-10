@@ -32,6 +32,8 @@ class DataManager: NSObject {
 
     var items:[Item] = [Item]()
     
+    var needToUpdatePushToken:Bool = false
+    
     func saveToken(token:String)->Bool{
         self.token = token
         let saveTokenSuccessful: Bool = KeychainWrapper.standard.set(token, forKey: "token")
@@ -54,6 +56,15 @@ class DataManager: NSObject {
         self.user = nil
         let removeEmailSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey:"email")
         return removeEmailSuccessful
+    }
+    
+    func savePushToken(token:String)->Bool{
+        let savePushTokenSuccessful: Bool = KeychainWrapper.standard.set(token, forKey:"pushToken")
+        return savePushTokenSuccessful
+
+    }
+    func loadPushToken()->String?{
+        return KeychainWrapper.standard.string(forKey: "pushToken")
     }
     //load user ,email and token
     func loadData(completion: @escaping () -> ()){

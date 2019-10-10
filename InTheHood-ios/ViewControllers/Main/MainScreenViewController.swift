@@ -278,6 +278,17 @@ class MainScreenViewController: UIViewController {
 //        createBarterTextView.layer.cornerRadius = 15.0
 //        createUserAvatar.layer.cornerRadius = 15.0
 //        createCreateBtn.layer.cornerRadius = 15.0
+        
+        
+        if DataManager.shared().needToUpdatePushToken {
+            if let token = DataManager.shared().loadPushToken() {
+                if let user  = DataManager.shared().user {
+                    NetworkingManager.shared().updateMyUserPush(email: user.email, token: token, completion: {
+                        error,data in
+                    })
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
