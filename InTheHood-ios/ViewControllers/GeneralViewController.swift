@@ -26,6 +26,10 @@ class GeneralViewController: UIViewController {
         loader.dropShadow(scale: true)
         self.view.addSubview(loader)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapView(sender:)))
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -35,5 +39,8 @@ class GeneralViewController: UIViewController {
     }
     func stopLoader() {
         loader.stopAnimating()
+    }
+    @objc func tapView(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }

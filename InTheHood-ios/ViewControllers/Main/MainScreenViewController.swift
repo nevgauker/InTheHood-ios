@@ -269,6 +269,8 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        topViewUserAvatar.layer.cornerRadius = topViewUserAvatar.frame.size.width/2
+        topViewUserAvatar.clipsToBounds = true
         if let categories  = DataManager.shared().categories{
             filter_category = categories[0]
         }
@@ -309,16 +311,15 @@ class MainScreenViewController: UIViewController {
     //MARK: - actions
     
     @IBAction func didPressDisplayProfile(_ sender: Any) {
-        
-        if profiileView.alpha == 0.0 {
-             profiileView.alpha = 1.0
-        }else {
-            profiileView.alpha = 0.0
-
-        }
-        
-        
-        
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: [], animations: {
+            if self.profiileView.alpha == 0.0 {
+                self.profiileView.alpha = 1.0
+            }else {
+                self.profiileView.alpha = 0.0
+                
+            }
+        }, completion: { (finished: Bool) in
+        })
     }
     
     

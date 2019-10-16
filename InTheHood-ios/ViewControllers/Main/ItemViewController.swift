@@ -235,6 +235,7 @@ class ItemViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setScreenType()
+        createPriceTextField.addDoneToolbar(onDone: (target:self, action:  #selector(self.didPressPriceDone(sender:))))
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -624,6 +625,11 @@ class ItemViewController: GeneralViewController {
             }
             
         }
+    }
+    
+
+    @objc func didPressPriceDone(sender: UIButton) {
+        self.view.endEditing(true)
     }
     
    

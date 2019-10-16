@@ -34,7 +34,7 @@
                                     <constraint firstAttribute="width" constant="220" id="wCP-Zx-5ot"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Pag-DB-xn5"/>
@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="width" constant="220" id="cpq-2F-6Y7"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="AHc-Us-cxd"/>
@@ -251,7 +251,7 @@
                                             <constraint firstAttribute="width" constant="220" id="i2s-Su-l0Z"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="fCc-Iz-NiD"/>
@@ -272,7 +272,7 @@
                                             <constraint firstAttribute="width" constant="220" id="gYb-Id-enG"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="nKU-T5-wLO"/>
@@ -293,7 +293,7 @@
                                             <constraint firstAttribute="height" constant="30" id="p3t-tL-CKF"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="Nwj-vg-GRJ" id="4ZA-e3-eKh"/>
@@ -395,7 +395,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="80"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="d70-9O-vEe">
-                                        <rect key="frame" x="10" y="10" width="99" height="60"/>
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bI-eV-SuF">
                                         <rect key="frame" x="10" y="10" width="99" height="60"/>
@@ -442,7 +442,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="3bI-eV-SuF" firstAttribute="leading" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="-99" id="0oZ-Dr-AwN"/>
+                                    <constraint firstItem="3bI-eV-SuF" firstAttribute="leading" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="-60" id="0oZ-Dr-AwN"/>
                                     <constraint firstItem="d70-9O-vEe" firstAttribute="leading" secondItem="Hb4-KV-0N0" secondAttribute="leading" constant="10" id="5K7-Cb-cLQ"/>
                                     <constraint firstItem="3bI-eV-SuF" firstAttribute="top" secondItem="d70-9O-vEe" secondAttribute="bottom" constant="-60" id="5xS-Sz-24S"/>
                                     <constraint firstAttribute="trailing" secondItem="9p9-6t-fTI" secondAttribute="trailing" constant="-110.66666666666669" id="Cwe-0H-sd7"/>
@@ -458,8 +458,8 @@
                                     <constraint firstItem="zsd-8w-UUn" firstAttribute="top" secondItem="Hb4-KV-0N0" secondAttribute="top" constant="35" id="fim-Ao-w7t"/>
                                     <constraint firstItem="RNH-iT-20Y" firstAttribute="top" secondItem="Hb4-KV-0N0" secondAttribute="top" constant="35" id="kB9-lS-dE7"/>
                                     <constraint firstItem="d70-9O-vEe" firstAttribute="top" secondItem="Hb4-KV-0N0" secondAttribute="top" constant="10" id="lUW-hu-ARK"/>
-                                    <constraint firstAttribute="trailing" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="305" id="sLa-RG-ROo"/>
-                                    <constraint firstAttribute="trailing" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="305" id="z5C-bp-NKK"/>
+                                    <constraint firstAttribute="trailing" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="344" id="sLa-RG-ROo"/>
+                                    <constraint firstAttribute="trailing" secondItem="d70-9O-vEe" secondAttribute="trailing" constant="344" id="z5C-bp-NKK"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-Ko-wZQ">
@@ -815,7 +815,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="jhont walker" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxq-Dg-Xhc">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ttile tile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxq-Dg-Xhc">
                                         <rect key="frame" x="86.999999999999986" y="348.66666666666669" width="197.66666666666663" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="A3b-IV-2Vh"/>
@@ -825,7 +825,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="Pxh-WP-Tgp" id="nOv-o7-riC"/>
+                                            <outlet property="delegate" destination="CEZ-gg-hJg" id="31l-7f-bYk"/>
                                         </connections>
                                     </textField>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6F-Bj-LqM">
@@ -877,9 +877,9 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                         <connections>
-                                            <outlet property="delegate" destination="Pxh-WP-Tgp" id="afG-rD-zQj"/>
+                                            <outlet property="delegate" destination="CEZ-gg-hJg" id="B5V-AW-1fD"/>
                                         </connections>
                                     </textField>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2j-bE-74O">

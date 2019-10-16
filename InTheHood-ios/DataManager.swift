@@ -27,8 +27,8 @@ class DataManager: NSObject {
     var token:String?
     var categories:[String]?
 
-    var types = ["All","Sell","Donate","Barter"]
-    var distances = ["All","<3km","<10km","<30km"]
+    let types = ["All","Sell","Donate","Barter"]
+    let distances = ["All","<3km","<10km","<30km"]
 
     var items:[Item] = [Item]()
     
