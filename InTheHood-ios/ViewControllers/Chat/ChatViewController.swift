@@ -298,6 +298,8 @@ class ChatViewController: UIViewController {
     func updateGUI() {
         DispatchQueue.main.async {
             
+            self.textInputTextField.text = ""
+            
             self.chatTableView.reloadData()
             self.chatsCollectionView.reloadData()
             

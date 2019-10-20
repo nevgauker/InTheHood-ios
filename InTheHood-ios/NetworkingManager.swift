@@ -10,8 +10,9 @@
 import Alamofire
 
 class API: NSObject {
-    //let baseURLDEV = "http://localhost:3004/"
-    let baseURLDEV = "http://192.168.179.146:3004/"
+    
+    let baseURLDEV_SIMULATOR = "http://localhost:3004/"
+    let baseURLDEV_DEVICE = "http://192.168.179.146:3004/"
     let baseURLPROD = "https://inthehoodapi.herokuapp.com/"
     var defaultHeaders:HTTPHeaders = HTTPHeaders()
 }
@@ -33,7 +34,13 @@ class NetworkingManager: NSObject {
         self.THE_API = api
         baseUrlStr =  THE_API.baseURLPROD
         if Utils.IsDevelopment() {
-            baseUrlStr = THE_API.baseURLDEV
+            #if targetEnvironment(simulator)
+            baseUrlStr = THE_API.baseURLDEV_SIMULATOR
+            // your simulator code
+            #else
+            baseUrlStr = THE_API.baseURLDEV_DEVICE
+            // your real device code
+            #endif
         }
     }
     
