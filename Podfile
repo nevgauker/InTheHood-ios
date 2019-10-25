@@ -12,6 +12,12 @@ target 'InTheHood-ios' do
   pod 'SwiftKeychainWrapper'
   pod 'LocationPickerViewController'
   pod 'Kingfisher'
+  pod 'FacebookLogin'
+  pod 'FacebookCore'
+  pod 'FacebookShare'
+  pod 'GoogleSignIn'
+
+
 
 
 

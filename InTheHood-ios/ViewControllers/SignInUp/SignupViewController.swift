@@ -8,12 +8,14 @@
 
 import UIKit
 import CropViewController
+import GoogleSignIn
+import Kingfisher
+
 
 extension SignupViewController:CropViewControllerDelegate {
     
     func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
 
-        
         self.dismiss(animated: true , completion: {
            DispatchQueue.main.async {
                 self.userAvatarImageView.image = image
@@ -109,41 +111,76 @@ class SignupViewController: GeneralViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var nameBorder: UIView!
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailBorder: UIView!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordBorder: UIView!
-    
     @IBOutlet weak var userAvatarImageView: UIImageView!
-
-    
     @IBOutlet weak var signupBtn: UIButton!
-
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
     var selectedImage:UIImage?
+    var facebookResult:[String : Any]?
+    var googleUser:GIDGoogleUser?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width / 2
         userAvatarImageView.clipsToBounds = true
         signupBtn.layer.cornerRadius = 15.0
-        
-        
-
-        // Do any additional setup after loading the view.
+        preloadFacebookDataIfNeeded()
+        preloadGoogleDataIfNeede()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         var x = scrollView.contentSize
-        
         x.height = 1200;
         scrollView.contentSize = x
     }
     
+    func preloadFacebookDataIfNeeded() {
+        
+        if let r = facebookResult {
+            emailTextField.text = r["email"] as? String
+            var name:String = ""
+            if let first =  r["first_name"] as? String {
+                name += first
+                name += " "
+            }
+            if let last =  r["last_name"] as? String {
+                name+=last
+            }
+            nameTextField.text = name
+            if let imageURL = ((r["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+                let url = URL(string: imageURL)
+                let data = NSData(contentsOf: url!)
+                let image = UIImage(data: data! as Data)
+                self.userAvatarImageView.image = image
+                self.selectedImage = image
+            }
+        }
+    }
+    func preloadGoogleDataIfNeede() {
+        if let user = googleUser {
+            
+            emailTextField.text = user.profile.email
+            nameTextField.text = user.profile.name
+            
+            if user.profile.hasImage {
+                let imageUrl = user.profile.imageURL(withDimension: 400)                
+                 userAvatarImageView.kf.setImage(with: imageUrl,placeholder: UIImage(named: "Avatar")){ result in
+                                   switch result {
+                                   case .success(let value):
+                                       self.userAvatarImageView.image = value.image
+                                       self.selectedImage = value.image
+                                   case .failure(let error):
+                                       print("Error: \(error)")}
+                               }
+                
+            }
+        }
+    }
     //MARK: - actions
     @IBAction func didPressSignup(_ sender: UIButton) {
         if dataValidation() {
@@ -151,7 +188,6 @@ class SignupViewController: GeneralViewController {
             let password = passwordTextField.text!
             let name = nameTextField.text!
             startLoader()
-
             NetworkingManager.shared().signup(email: email, password: password, name: name, avatar: selectedImage!,completion: {
                 error,data in
                 
@@ -174,8 +210,6 @@ class SignupViewController: GeneralViewController {
                         print("user is missing")
                     }
                 }
-                
-                
             })
             
         }
@@ -187,7 +221,6 @@ class SignupViewController: GeneralViewController {
     @IBAction func didPressSelectImage(_ sender: Any) {
         
         let alert = UIAlertController(title: "Image", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
         alert.addAction(UIAlertAction(title:"Gallery", style: .default , handler:{ (UIAlertAction)in
             if let picker =  Utils.getImagePicker(library: true, delegate: self as UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
                 self.present(picker, animated: true, completion: nil)
@@ -204,18 +237,13 @@ class SignupViewController: GeneralViewController {
             }
 
         }))
-        
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
         }))
-        
         self.present(alert, animated: true, completion: {
             print("completion block")
         })
-        
-        
     }
-    
     
     func dataValidation()->Bool {
         
@@ -225,11 +253,7 @@ class SignupViewController: GeneralViewController {
         nameBorder.alpha = 0.0
         emailBorder.alpha = 0.0
         passwordBorder.alpha = 0.0
-
-
-
         var validationComplete:Bool = true
-        
         if  nameTextField.text == nil || nameTextField.text?.count == 0 {
             nameBorder.alpha = 1.0
             nameBorder.backgroundColor = UIColor.red
@@ -254,7 +278,6 @@ class SignupViewController: GeneralViewController {
         return validationComplete
     }
     
-    
     func presentCropViewController(img:UIImage) {
         DispatchQueue.main.async {
             let vc = CropViewController(croppingStyle: .circular, image: img)
@@ -263,14 +286,6 @@ class SignupViewController: GeneralViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

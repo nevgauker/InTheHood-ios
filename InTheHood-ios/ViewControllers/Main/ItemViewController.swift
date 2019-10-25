@@ -598,7 +598,7 @@ class ItemViewController: GeneralViewController {
     
     func fecthMessagesForMyItem() {
     
-        if let theItem  = self.item {
+        if self.item != nil {
 //            NetworkingManager.shared().fetchMessagesByItem(_id: theItem._id, completion: { error, data in
 //                if let d = data {
 //                    let arr = DataManager.shared().handldeMessages(dict: d)

@@ -4,6 +4,39 @@ PODS:
   - collection-view-layouts/PinterestLayout (0.1.2):
     - collection-view-layouts/Core
   - CropViewController (2.5.0)
+  - FacebookCore (0.7.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.7.0):
+    - FacebookCore (~> 0.7)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FacebookShare (0.7.0):
+    - FacebookCore (~> 0.7)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKShareKit (~> 5.0)
+  - FBSDKCoreKit (5.0.1):
+    - FBSDKCoreKit/Basics (= 5.0.1)
+    - FBSDKCoreKit/Core (= 5.0.1)
+  - FBSDKCoreKit/Basics (5.0.1)
+  - FBSDKCoreKit/Core (5.0.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.0.1):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKShareKit (5.0.1):
+    - FBSDKCoreKit (~> 5.0)
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
+  - GTMSessionFetcher/Core (1.2.2)
   - Kingfisher (5.5.0)
   - LocationPickerViewController (3.4)
   - NVActivityIndicatorView (4.7.0):
@@ -15,6 +48,10 @@ DEPENDENCIES:
   - Alamofire
   - collection-view-layouts/PinterestLayout
   - CropViewController
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
+  - GoogleSignIn
   - Kingfisher
   - LocationPickerViewController
   - NVActivityIndicatorView
@@ -25,6 +62,15 @@ SPEC REPOS:
     - Alamofire
     - collection-view-layouts
     - CropViewController
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
     - Kingfisher
     - LocationPickerViewController
     - NVActivityIndicatorView
@@ -34,11 +80,20 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
   CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
+  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
+  FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
+  FacebookShare: dd4954712db61e078aea483bdf89e1b2ae3574b5
+  FBSDKCoreKit: 4a19534474ade7c71bd016d800aa5e7722bcdda1
+  FBSDKLoginKit: 41efa754b909b0ea813fa9a8596dacc8ed196d50
+  FBSDKShareKit: 11faa09311bc009740b9a939ee2673146df2c9df
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
   LocationPickerViewController: 4f33d63587bca682267a09779de2b2e09cf5b8e2
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   SwiftKeychainWrapper: ef5ad793bc0e08e24a5913f28345b8f7bc8e4123
 
-PODFILE CHECKSUM: 4d38fabcc61ba2f11413d56bad6e749aceee7901
+PODFILE CHECKSUM: 65c011c66d3b02a643dc73ec2cf7269d1d120acd
 
 COCOAPODS: 1.7.0

@@ -7,7 +7,50 @@
 //
 
 import UIKit
+import GoogleSignIn
 
+import FBSDKLoginKit
+import FacebookLogin
+
+extension SigninViewController:LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        
+        if((AccessToken.current) != nil){
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email, picture.width(480).height(480)"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    if let r = result as? [String : Any]{
+                        self.facebookResult = r
+                        let email = r["email"] as! String
+                        NetworkingManager.shared().signin(email: email, password: nil, facebookToken: AccessToken.current?.tokenString, googleToken: nil, completion: { error,data in
+                            if error == nil {
+                                if let userData:[String:Any] = data?["user"] as? [String:Any] {
+                                    let user:User = User(data: userData)
+                                    DataManager.shared().user = user
+                                    if let token:String = data?["token"] as? String {
+                                        _ = DataManager.shared().saveToken(token: token)
+                                        _ = DataManager.shared().saveUser(user: user)
+                                        NetworkingManager.shared().setDefaultHeaders(token: token)
+                                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                        appDelegate.setRootmainViewController()
+                                    }else {
+                                        print("token is missing")
+                                    }
+                                }
+                            }else {
+                                 self.didPressSignup(self.signupBtn)
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
+    
+}
 extension SigninViewController:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
@@ -43,30 +86,47 @@ extension SigninViewController:UITextFieldDelegate {
     }
 }
 
-class SigninViewController: GeneralViewController {
+class SigninViewController: GeneralViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
-    
     @IBOutlet weak var mainTitleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailBorder: UIView!
     @IBOutlet weak var signinBtn: UIButton!
+    @IBOutlet weak var signupBtn: UIButton!
     @IBOutlet weak var passwordBorder: UIView!
+    
+    var facebookResult:[String : Any]?
+    var googleUser:GIDGoogleUser?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         signinBtn.layer.cornerRadius = 15.0
+        let loginButton = FBLoginButton(permissions: [ .publicProfile, .email, ])
+        loginButton.delegate = self
+        loginButton.center = view.center
+        view.addSubview(loginButton)
+        
+        let loginButton2 = GIDSignInButton(frame: CGRect(x: 40,y: 40,width: 200,height: 70))
+        
+    
+        
+        view.addSubview(loginButton2)
+        
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.uiDelegate = self
 
-        // Do any additional setup after loading the view.
+        
+        
+
     }
     //MARK: - actions
     @IBAction func didPressSignin(_ sender: UIButton) {
-        
-        
         if dataValidation() {
             startLoader()
             let email = emailTextField.text!
             let password = passwordTextField.text!
-            NetworkingManager.shared().signin(email: email, password: password,completion: {
+            NetworkingManager.shared().signin(email: email, password: password, facebookToken: nil, googleToken: nil, completion: {
                 error,data in
                 
                 self.stopLoader()
@@ -100,7 +160,6 @@ class SigninViewController: GeneralViewController {
     }
     
     func dataValidation()->Bool {
-        
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         emailBorder.alpha = 0.0
@@ -118,4 +177,66 @@ class SigninViewController: GeneralViewController {
         }
         return validationComplete
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signupSegue" {
+            let vc:SignupViewController = segue.destination as! SignupViewController
+            vc.facebookResult = self.facebookResult
+            vc.googleUser = googleUser
+            
+            
+            
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+                    withError error: Error!) {
+              if let error = error {
+                  if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                      print("The user has not signed in before or they have since signed out.")
+                  } else {
+                      print("\(error.localizedDescription)")
+                  }
+                  return
+              }
+              // Perform any operations on signed in user here.
+        
+        
+            self.googleUser = user
+        
+        
+              //let userId = user.userID                  // For client-side use only!
+              let idToken = user.authentication.idToken // Safe to send to the server
+              //let fullName = user.profile.name
+             // let givenName = user.profile.givenName
+              //let familyName = user.profile.familyName
+              let googleMail = user.profile.email
+        
+        
+        NetworkingManager.shared().signin(email: googleMail!, password: nil, facebookToken:nil, googleToken:idToken, completion: { error,data in
+                                   if error == nil {
+                                       if let userData:[String:Any] = data?["user"] as? [String:Any] {
+                                           let user:User = User(data: userData)
+                                           DataManager.shared().user = user
+                                           if let token:String = data?["token"] as? String {
+                                               _ = DataManager.shared().saveToken(token: token)
+                                               _ = DataManager.shared().saveUser(user: user)
+                                               NetworkingManager.shared().setDefaultHeaders(token: token)
+                                               let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                               appDelegate.setRootmainViewController()
+                                           }else {
+                                               print("token is missing")
+                                           }
+                                       }
+                                   }else {
+                                        self.didPressSignup(self.signupBtn)
+                                   }
+                               })
+        
+        
+        
+            
+          }
+
+          
 }

@@ -87,10 +87,19 @@ class NetworkingManager: NSObject {
     
     //MARK: users
 
-    func signin(email:String, password:String, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
+    func signin(email:String, password:String?,facebookToken:String?,googleToken:String?, completion: @escaping (_ error:String?, _ data:[String : Any]?) -> ()) {
         
         let urlStr = baseUrlStr  + "users/user/signin"
-        let params = ["email": email, "password": password]
+        var params = ["email": email]
+        
+        
+        if let thePassword = password {
+            params["password"] = thePassword
+        }else if let token = facebookToken {
+            params["facebookToken"] = token
+        }else if let token = googleToken {
+            params["googleToken"] = token
+        }
         
         Alamofire.request(urlStr, method: .post, parameters: params, encoding: JSONEncoding.default)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
@@ -623,7 +632,8 @@ class NetworkingManager: NSObject {
     }
         
     func getFullImageUrl(imageStr:String)->URL? {
-        let str  = baseUrlStr + imageStr
+        //update switch to remote storage 
+        let str  = /*baseUrlStr +*/ imageStr
         return URL(string: str)
     }
     

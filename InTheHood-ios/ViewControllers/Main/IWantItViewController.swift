@@ -96,7 +96,7 @@ class IWantItViewController: GeneralViewController {
         if validate() {
             startLoader()
             
-            let params:[String : String] = ["text" : messegeTextView.text, "itemId" : item._id, "ownerId" : DataManager.shared().user!._id]
+            let _:[String : String] = ["text" : messegeTextView.text, "itemId" : item._id, "ownerId" : DataManager.shared().user!._id]
 
 //            NetworkingManager.shared().createMessage(params: params, completion: { error, data in
 //                

@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import UserNotifications
+import  GoogleSignIn
 
 
 
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        GIDSignIn.sharedInstance().clientID = "2017787589-35scskhrq4apbegms1gt93dgfkqerkra.apps.googleusercontent.com"
+       
         
         NetworkingManager.shared().getCategories()
         LocationManager.shared().startLocationTracking()
@@ -110,10 +113,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-
-    
-    
-    
-
 }
 

@@ -129,6 +129,7 @@
                         <outlet property="passwordBorder" destination="tWn-e4-6Cs" id="Rwc-BF-0dg"/>
                         <outlet property="passwordTextField" destination="I2g-Lc-1rR" id="n8a-Kk-YDe"/>
                         <outlet property="signinBtn" destination="gfJ-fs-WkD" id="030-4m-qLQ"/>
+                        <outlet property="signupBtn" destination="e7c-2B-QfB" id="gh3-UD-HM7"/>
                         <segue destination="QF0-6O-EqF" kind="show" identifier="forgotPasswordSegue" id="06n-ab-hUZ"/>
                         <segue destination="Nwj-vg-GRJ" kind="presentation" identifier="signupSegue" id="pIz-Vh-3uU"/>
                     </connections>
