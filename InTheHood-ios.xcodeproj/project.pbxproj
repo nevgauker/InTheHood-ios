@@ -19,6 +19,8 @@
 		DC45BAD122DA3037003D0421 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAD022DA3037003D0421 /* LocationManager.swift */; };
 		DC45BAD322DA311D003D0421 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAD222DA311D003D0421 /* Location.swift */; };
 		DC76972F230D44AE008A247D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76972E230D44AE008A247D /* Message.swift */; };
+		DC80DD0A23645DAB00784A5E /* SocialSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80DD0923645DAB00784A5E /* SocialSigninViewController.swift */; };
+		DC80DD14236483D200784A5E /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80DD13236483D200784A5E /* OnboardingViewController.swift */; };
 		DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */; };
 		DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9B71FD22A8D8AF007B769B /* Extensions.swift */; };
 		DC9B720222A9236F007B769B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B720122A9236F007B769B /* MapKit.framework */; };
@@ -88,6 +90,8 @@
 		DC45BAD022DA3037003D0421 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DC45BAD222DA311D003D0421 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		DC76972E230D44AE008A247D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		DC80DD0923645DAB00784A5E /* SocialSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSigninViewController.swift; sourceTree = "<group>"; };
+		DC80DD13236483D200784A5E /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DC9B71FB22A8CCE7007B769B /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		DC9B71FD22A8D8AF007B769B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DC9B720122A9236F007B769B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -185,6 +189,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC80DD12236483A400784A5E /* Onboparding */ = {
+			isa = PBXGroup;
+			children = (
+				DC80DD13236483D200784A5E /* OnboardingViewController.swift */,
+			);
+			path = Onboparding;
+			sourceTree = "<group>";
+		};
 		DC9D0AE42332924900ADEBCF /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +211,7 @@
 		DCA8B1F722A5067C0060E1A7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DC80DD12236483A400784A5E /* Onboparding */,
 				DC9D0AE42332924900ADEBCF /* Chat */,
 				DCA8B1FB22A507040060E1A7 /* GeneralViews */,
 				DCA8B1F922A506DA0060E1A7 /* Main */,
@@ -213,6 +226,7 @@
 			children = (
 				DC328D60229BD6E200693E17 /* SigninViewController.swift */,
 				DC328D62229BE1BE00693E17 /* SignupViewController.swift */,
+				DC80DD0923645DAB00784A5E /* SocialSigninViewController.swift */,
 			);
 			path = SignInUp;
 			sourceTree = "<group>";
@@ -568,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC80DD0A23645DAB00784A5E /* SocialSigninViewController.swift in Sources */,
 				DCFB47DF22A431C000D0E7AA /* CreateView.swift in Sources */,
 				DC13D75222CCF5EC008B6CEA /* GeneralItemCell.swift in Sources */,
 				DCA3089F234D75240028A617 /* NotificationsHandler.swift in Sources */,
@@ -590,6 +605,7 @@
 				DC9B71FE22A8D8AF007B769B /* Extensions.swift in Sources */,
 				DCCF8E3A229C1F0600F13C8D /* MainScreenViewController.swift in Sources */,
 				DC9D0AE62332927C00ADEBCF /* ChatViewController.swift in Sources */,
+				DC80DD14236483D200784A5E /* OnboardingViewController.swift in Sources */,
 				DC9B71FC22A8CCE7007B769B /* GeneralViewController.swift in Sources */,
 				DCFB47DB22A3E88D00D0E7AA /* NetworkingManager.swift in Sources */,
 				DC9D0AEC23329C1A00ADEBCF /* Chat.swift in Sources */,

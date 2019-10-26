@@ -16,13 +16,6 @@ target 'InTheHood-ios' do
   pod 'FacebookCore'
   pod 'FacebookShare'
   pod 'GoogleSignIn'
-
-
-
-
-
-
-
   # Pods for InTheHood-ios
 
   target 'InTheHood-iosTests' do
