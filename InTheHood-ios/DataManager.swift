@@ -27,7 +27,7 @@ class DataManager: NSObject {
     var token:String?
     var categories:[String]?
 
-    let types = ["All","Sell","Donate","Barter"]
+    let types = ["All","Donate","Sell","Barter"]
     let distances = ["All","<3km","<10km","<30km"]
 
     var items:[Item] = [Item]()
@@ -85,9 +85,6 @@ class DataManager: NSObject {
                 completion()
             })
         }
-        
-        
-
     }
     
     func loadItems(data: [String: Any]?) {
@@ -111,7 +108,6 @@ class DataManager: NSObject {
         }
         return 0
     }
-    
     
     func handldeMessages(dict:[String:Any])->[Message] {
         var arr:[Message] = [Message]()

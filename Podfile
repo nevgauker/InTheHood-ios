@@ -16,6 +16,11 @@ target 'InTheHood-ios' do
   pod 'FacebookCore'
   pod 'FacebookShare'
   pod 'GoogleSignIn'
+  
+  pod 'BraintreeDropIn'
+  pod 'Braintree/PayPal'
+
+
   # Pods for InTheHood-ios
 
   target 'InTheHood-iosTests' do

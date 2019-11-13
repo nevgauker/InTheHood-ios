@@ -15,22 +15,32 @@ import Kingfisher
 extension SignupViewController:CropViewControllerDelegate {
     
     func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        
+        
+        var cropImage : UIImage?
 
+               if image.size.width > 800 || image.size.height > 800
+               {
+                   cropImage = Utils.imageWithImage(image: image, scaledToSize: CGSize(width: 800.0, height: 800.0))
+               }
+               else{
+                   cropImage = image
+               }
+        
         self.dismiss(animated: true , completion: {
            DispatchQueue.main.async {
-                self.userAvatarImageView.image = image
+                self.userAvatarImageView.image = cropImage
                 self.selectedImage = image
                 self.userAvatarImageView.layer.borderWidth = 0.0
                 self.nameBorder.alpha = 0.0
                 self.emailBorder.alpha = 0.0
                 self.passwordBorder.alpha = 0.0
             }
-            
-        })
+       })
     }
     
     func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
-        self.dismiss(animated: true , completion: {})
+      //  self.dismiss(animated: true , completion: {})
     }
     
 }
@@ -38,18 +48,9 @@ extension SignupViewController:CropViewControllerDelegate {
 
 extension SignupViewController:UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        self.dismiss(animated: true , completion: {
-            
-            if let img = info[.originalImage] as? UIImage{
-                
-                  self.presentCropViewController(img: img)
-            }
-            
-            
-        })
-        
-      
+              if let img = info[.originalImage] as? UIImage{
+                                self.presentCropViewController(img: img)
+        }
     }
 }
 
@@ -129,6 +130,10 @@ class SignupViewController: GeneralViewController {
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width / 2
         userAvatarImageView.clipsToBounds = true
         signupBtn.layer.cornerRadius = 15.0
+        emailTextField.layer.cornerRadius = 15.0
+        nameTextField.layer.cornerRadius = 15.0
+        passwordTextField.layer.cornerRadius = 15.0
+
         preloadFacebookDataIfNeeded()
         preloadGoogleDataIfNeede()
     }
@@ -282,7 +287,10 @@ class SignupViewController: GeneralViewController {
         DispatchQueue.main.async {
             let vc = CropViewController(croppingStyle: .circular, image: img)
             vc.delegate = self as CropViewControllerDelegate
-            self.present(vc, animated: false, completion: nil)
+            
+            
+            self.show(vc, sender: self)
+           // self.present(vc, animated: false, completion: nil)
         }
     }
     

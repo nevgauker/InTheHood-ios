@@ -3,4 +3,54 @@
    uuid = "F70D1098-4030-41E1-B566-EEDCFFA0E06E"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EFDB78E0-8ABA-4873-A511-6B669D774F41"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InTheHood-ios/ViewControllers/Create/ImageSelectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "ImageSelectionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "EFDB78E0-8ABA-4873-A511-6B669D774F41 - ef71446576723cd3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InTheHood_ios.ImageSelectionViewController.createItemWithLocation(location: LocationPickerViewController.LocationItem) -&gt; ()"
+                  moduleName = "InTheHood-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rotemnevgauker/Documents/development%20projects/InTheHood-ios/InTheHood-ios/ViewControllers/Create/ImageSelectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "1492">
+               </Location>
+               <Location
+                  uuid = "EFDB78E0-8ABA-4873-A511-6B669D774F41 - 8aedfb60283b392a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;) -&gt; () in InTheHood_ios.ImageSelectionViewController.createItemWithLocation(location: LocationPickerViewController.LocationItem) -&gt; ()"
+                  moduleName = "InTheHood-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rotemnevgauker/Documents/development%20projects/InTheHood-ios/InTheHood-ios/ViewControllers/Create/ImageSelectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "198">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

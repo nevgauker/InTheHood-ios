@@ -14,79 +14,10 @@ extension MainScreenViewController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                     layout collectionViewLayout: UICollectionViewLayout,
                     sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        
-        if collectionView.tag == 1 {
-            return CGSize(width: 100.0, height: 45.0)
-
-        }
-        return CGSize(width: self.view.frame.size.width, height: 260.0)
+        let val = self.view.frame.size.width / 2
+        return CGSize(width: val, height: val)
     }
 }
-
-//
-//extension MainScreenViewController:UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//        if textField.tag == 0{
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createTitleBottomBorder.alpha = 1.0
-//
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//        if textField.tag == 1{
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createPriceBottomBorder.alpha = 1.0
-//
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//    }
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//
-//        self.createPriceTextField.resignFirstResponder()
-//
-//
-//        if textField.tag == 0 {
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createTitleBottomBorder.alpha = 0.0
-//
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//
-//        if textField.tag == 1 {
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createPriceBottomBorder.alpha = 0.0
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//
-//        return true
-//
-//    }
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.createPriceTextField.resignFirstResponder()
-//        self.createTitleTextField.resignFirstResponder()
-//        if textField.tag == 0 {
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createTitleBottomBorder.alpha = 0.0
-//
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//
-//        if textField.tag == 1 {
-//            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-//                self.createPriceBottomBorder.alpha = 0.0
-//            }, completion: { (finished: Bool) in
-//            })
-//        }
-//
-//        return true
-//    }
-//}
 
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,10 +31,15 @@ extension MainScreenViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let identifier = "GeneralItemCell"
+       // let identifier = "GeneralItemCell"
+       // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        
+        let identifier = "ItemDetailsCollectionViewCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        
+        
         let item = DataManager.shared().items[indexPath.item]
-        if let theCell = cell as? GeneralItemCell {
+        if let theCell = cell as? ItemDetailsCollectionViewCell {
             theCell.setCell(item: item)
         }
         return cell
@@ -113,12 +49,7 @@ extension MainScreenViewController: UICollectionViewDataSource {
 extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedItem =  DataManager.shared().items[indexPath.item]
-        
-        if selectedItem?.ownerId == DataManager.shared().user?._id {
-            performSegue(withIdentifier: "editSegue", sender: self)
-
-        }
-        performSegue(withIdentifier: "displaySegue", sender: self)
+        performSegue(withIdentifier: "itemDetailsSegue", sender: self)
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView.tag == 0 {
@@ -127,154 +58,37 @@ extension MainScreenViewController: UICollectionViewDelegate {
                 cell.alpha = 1.0
             }, completion: {
                 (value: Bool) in
-             
             })
         }
     }
 }
 
-extension MainScreenViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        if pickerView.tag == 0 {
-            return DataManager.shared().distances.count
-        }else if pickerView.tag == 1 {
-            return DataManager.shared().types.count
-
-        }
-        //2
-        if let categories = DataManager.shared().categories {
-            return categories.count
-        }
-        return 0
-    }
-    
-    
-}
-extension MainScreenViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if pickerView.tag == 0 {
-            return DataManager.shared().distances[row]
-        }else if pickerView.tag == 1 {
-            return DataManager.shared().types[row]
-        }
-        if let categories = DataManager.shared().categories {
-            return categories[row]
-        }
-        return ""
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 0 {
-            filter_distance =  DataManager.shared().distances[row]
-        }else if pickerView.tag == 1 {
-            filyter_type =  DataManager.shared().types[row]
-        }else if pickerView.tag == 2 {
-            if let categories = DataManager.shared().categories {
-                filter_category =  categories[row]
-            }
-        }
-        var filterUpdated = false
-        
-        if (filterDistanceLabel.text != filter_distance) {
-            filterUpdated = true
-        }
-        filterDistanceLabel.text = filter_distance
-        if (filterTypeLabel.text != filyter_type) {
-            filterUpdated = true
-        }
-        filterTypeLabel.text = filyter_type
-        if (filterCategoryLabel.text !=  filter_category) {
-            filterUpdated = true
-        }
-        filterCategoryLabel.text = filter_category
-        
-        if filterUpdated {
-            fetchItems(type: filyter_type, category: filter_category)
-        }
-
-        
-
-        
-    }
-}
-
-class MainScreenViewController: UIViewController {
-
+class MainScreenViewController: UIViewController,didSelectCategory {
+    @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var createView: UIView!
-    @IBOutlet weak var filterView: UIView!
-
-    @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var addBtn: UIButton!
-    
-    
-    @IBOutlet weak var categoriesCollection: CategoriesCollectionView!
-    let categories = ["aaaa", "abbb"]
-    
-    var selectedItem:Item?
-
-
-    @IBOutlet weak var createScrollView: UIScrollView!
-    
-    @IBOutlet weak var createUserAvatar: UIImageView!
-    
-    @IBOutlet weak var createTitleTextField: UITextField!
-    @IBOutlet weak var createTitleBottomBorder: UIView!
-    @IBOutlet weak var createPriceBottomBorder: UIView!
-    @IBOutlet weak var createCreateBtn: UIButton!
-
-    @IBOutlet weak var createTypeSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet weak var createCurrencyBtn: UIButton!
-    @IBOutlet weak var createPriceTextField: UITextField!
-    @IBOutlet weak var createBarterView: UIView!
-    @IBOutlet weak var createBarterTextView: UITextView!
-
-    @IBOutlet weak var barterViewHeight: NSLayoutConstraint!
-    
-    
     @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var topViewUserAvatar: UIImageView!
-    @IBOutlet weak var topViewUserNameLabel: UILabel!
-    
-    
-    
-    @IBOutlet weak var filterDistanceLabel: UILabel!
-    @IBOutlet weak var filterTypeLabel: UILabel!
-    @IBOutlet weak var filterCategoryLabel: UILabel!
-    
-    
-    
-    @IBOutlet weak var profiileView: UIView!
-    
-//
-//    //create
-//    var selectedImage:UIImage?
-//    var type:String = "Sell"
-//    var currency:String = Utils.currenciesNames()[0]
-//    var selectedCategoryIndex:Int = 0
-//    var barterFor = ""
-    
-    //filter
-    
+    @IBOutlet weak var userBtn: UIButton!
+   
+
+    var selectedItem:Item?
+    var selectedCategory = ""
+       
+    var x = 0
+
     var filter_distance = DataManager.shared().distances[0]
-    var filyter_type = DataManager.shared().distances[0]
-    var filter_category = ""
+    var filyter_type = DataManager.shared().types[0]
+    var filter_category = DataManager.shared().categories![0]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topViewUserAvatar.layer.cornerRadius = topViewUserAvatar.frame.size.width/2
-        topViewUserAvatar.clipsToBounds = true
+        addBtn.layer.cornerRadius = 20.0
+        addBtn.clipsToBounds = true
         if let categories  = DataManager.shared().categories{
             filter_category = categories[0]
         }
-        updateTopView()
+        fetchUserImage()
         
 //
 //        createBarterTextView.layer.cornerRadius = 15.0
@@ -310,69 +124,45 @@ class MainScreenViewController: UIViewController {
     }
     //MARK: - actions
     
+    @IBAction func didChangeType(_ sender: UISegmentedControl) {
+        self.filyter_type = DataManager.shared().types[sender.selectedSegmentIndex]
+        fetchItems(type: filyter_type, category: filter_category)
+        
+    }
     @IBAction func didPressDisplayProfile(_ sender: Any) {
-        UIView.animate(withDuration: 0.7, delay: 0.0, options: [], animations: {
-            if self.profiileView.alpha == 0.0 {
-                self.profiileView.alpha = 1.0
-            }else {
-                self.profiileView.alpha = 0.0
-                
-            }
-        }, completion: { (finished: Bool) in
-        })
+        
+        performSegue(withIdentifier: "userSegue", sender: self)
+        
+//        UIView.animate(withDuration: 0.7, delay: 0.0, options: [], animations: {
+//            if self.profiileView.alpha == 0.0 {
+//                self.profiileView.alpha = 1.0
+//            }else {
+//                self.profiileView.alpha = 0.0
+//
+//            }
+//        }, completion: { (finished: Bool) in
+//        })
     }
     
+    @IBAction func didPressSelectCategory(_ sender: Any) {
+        x = 0
+        performSegue(withIdentifier: "categorySelectSegue", sender: self)
+    }
     
     @IBAction func didPressSignOut(_ sender: UIButton) {
+        
         NetworkingManager.shared().signOut()
     }
 
     @IBAction func didPressAdd(_ sender: UIButton) {
-        performSegue(withIdentifier: "createSegue", sender: self)
+        x = 1
+        performSegue(withIdentifier: "categorySelectSegue", sender: self)
     }
-    @IBAction func didPressFilter(_ sender: UIButton) {
-        if  sender.tag == 0 {
-            sender.tag = 1
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.filterBtn.setTitle("DISMISS", for: .normal)
-                var frame = self.filterView.frame
-                frame.origin.y -= 170
-                frame.size.height = 200
-                self.filterView.frame = frame
-                
-                
-            }, completion: { (finished: Bool) in
-                self.filterBtn.backgroundColor = UIColor.red
-                self.filterBtn.setTitleColor(UIColor.white, for: .normal)
-                
-            })
-            addBtn.isEnabled = false
-            
-            
-        }else {sender.tag = 0
-            
-            addBtn.isEnabled = true
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
-                self.filterBtn.setTitle("FILTER", for: .normal)
-                var frame = self.filterView.frame
-                frame.origin.y += 170
-                frame.size.height = 30.0
-                self.filterView.frame = frame
-            }, completion: { (finished: Bool) in
-                self.filterBtn.backgroundColor = UIColor.white
-                self.filterBtn.setTitleColor(UIColor(red: 82.0/255.0, green: 145.0/255.0, blue: 255.0/255.0, alpha: 1.0), for: .normal)
-            })
-            
-        }
-    }
-
+  
 
     func fetchItems(type:String,category:String) {
         
         var dist:Float = -1.0
-       
-        
-        
         if filter_distance != DataManager.shared().distances[0] {
             if filter_distance == DataManager.shared().distances[1] {
                 dist = 3.0
@@ -424,44 +214,95 @@ class MainScreenViewController: UIViewController {
         
     }
     
-    func updateTopView() {
-        
+    func fetchUserImage(){
         if let theUser = DataManager.shared().user {
-            topViewUserNameLabel.text = theUser.name
-            let urlStr = theUser.userAvatar
-            if let imageUrl =  NetworkingManager.shared().getFullImageUrl(imageStr: urlStr){
-                topViewUserAvatar.kf.setImage(with: imageUrl,placeholder: UIImage(named: "Avatar")){ result in
-                    switch result {
-                    case .success(let value):
-                        self.topViewUserAvatar.image = value.image
-                    case .failure(let error):
-                        print("Error: \(error)")}
-                }
-            }
-            
-        }
+                   let urlStr = theUser.userAvatar
+                   if let imageUrl =  NetworkingManager.shared().getFullImageUrl(imageStr: urlStr){
+                    userBtn.imageView?.kf.setImage(with: imageUrl,placeholder: UIImage(named: "Avatar")){ result in
+                           switch result {
+                           case .success(let value):
+                            self.userBtn.setImage(value.image, for: .normal)
+                           case .failure(let error):
+                               print("Error: \(error)")}
+                       }
+                   }
+                   
+               }
+        
         
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let vc = segue.destination as? ItemViewController {
-            if segue.identifier == "createSegue" {
-                vc.screen = .create
-            }
-            if segue.identifier == "displaySegue" {
-                vc.screen = .display
-                vc.item = self.selectedItem
-
-            }
-            if segue.identifier == "editSegue" {
-                vc.screen = .edit
-                vc.item = self.selectedItem
-
-            }
-        }
      
+        
+        if segue.identifier == "createSegue2" {
+            let nav:UINavigationController = segue.destination as! UINavigationController
+            
+            let vc:DetailsViewController = nav.viewControllers[0] as! DetailsViewController
+            
+            vc.category = selectedCategory
+            
+        }
+        
+        if segue.identifier == "categorySelectSegue" {
+            let vc:CategorySelectionViewController = segue.destination as! CategorySelectionViewController
+            if x == 1 {
+                vc.screen_type = Screen_type.creation
+            }
+            vc.delegate = self
+            
+        }
+        
+        if segue.identifier == "itemDetailsSegue" {
+                  let vc:ItemDetailsViewController = segue.destination as! ItemDetailsViewController
+            
+            vc.item  = self.selectedItem!
+        }
+        
+        if segue.identifier == "userSegue" {
+            
+            let vc:UserDetailsViewController = segue.destination as! UserDetailsViewController
+            
+            if let current = DataManager.shared().user {
+                vc._id = current._id
+            }else {
+                
+                
+            }
+
+            
+        }
+
+        
+        
     }
+        
+     
+    
+    // MARK: didSelectCategory
+    
+    func didSelect(category:String) {
+        if x == 0{
+            if category == "All"  {
+                categoryBtn.setTitle(category, for: .normal)
+                categoryBtn.setImage(nil, for: .normal)
+            }else {
+                categoryBtn.setTitle("", for: .normal)
+                categoryBtn.setImage(UIImage(named: category), for: .normal)
+            }
+            
+            self.filter_category = category
+            self.fetchItems(type: self.filyter_type, category: self.filter_category)
+        }
+        if x == 1{
+            selectedCategory = category
+            performSegue(withIdentifier: "createSegue2", sender: self)
+
+        }
+    
+    }
+
     
 }

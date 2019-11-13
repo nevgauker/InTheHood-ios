@@ -106,4 +106,11 @@ class Item: NSObject {
         return ""
         
     }
+    
+    func itIsMyItem()->Bool {
+        if let user = DataManager.shared().user {
+            return self.ownerId == user._id
+        }
+        return false
+    }
 }

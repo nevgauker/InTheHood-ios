@@ -60,4 +60,14 @@ class Utils: NSObject {
     class func fillColor()->UIColor {
         return UIColor(red: 82.0/255.0, green: 145.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
+    
+    
+    class func imageWithImage(image:UIImage ,scaledToSize newSize:CGSize)-> UIImage
+    {
+        UIGraphicsBeginImageContext( newSize )
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+        return newImage
+    }
 }

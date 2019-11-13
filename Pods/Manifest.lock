@@ -1,5 +1,36 @@
 PODS:
   - Alamofire (4.8.2)
+  - Braintree/Card (4.23.0):
+    - Braintree/Core
+  - Braintree/Core (4.23.0)
+  - Braintree/PaymentFlow (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPal (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.23.0)
+  - Braintree/UnionPay (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (7.1.0):
+    - BraintreeDropIn/DropIn (= 7.1.0)
+  - BraintreeDropIn/DropIn (7.1.0):
+    - Braintree/Card (~> 4.23)
+    - Braintree/Core (~> 4.23)
+    - Braintree/PaymentFlow (~> 4.23)
+    - Braintree/PayPal (~> 4.23)
+    - Braintree/UnionPay (~> 4.23)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (7.1.0)
   - collection-view-layouts/Core (0.1.2)
   - collection-view-layouts/PinterestLayout (0.1.2):
     - collection-view-layouts/Core
@@ -46,6 +77,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Braintree/PayPal
+  - BraintreeDropIn
   - collection-view-layouts/PinterestLayout
   - CropViewController
   - FacebookCore
@@ -60,6 +93,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Braintree
+    - BraintreeDropIn
     - collection-view-layouts
     - CropViewController
     - FacebookCore
@@ -78,6 +113,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Braintree: b5841b9b1c1dadc86959db3e29d36099b67f91bf
+  BraintreeDropIn: a019fcbf4edb87c55780ec01d5db3998b19164ce
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
   CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
   FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
@@ -94,6 +131,6 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   SwiftKeychainWrapper: ef5ad793bc0e08e24a5913f28345b8f7bc8e4123
 
-PODFILE CHECKSUM: 65c011c66d3b02a643dc73ec2cf7269d1d120acd
+PODFILE CHECKSUM: 91c0b02d7150739300d77298b5f6c84db4652327
 
 COCOAPODS: 1.7.0

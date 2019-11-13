@@ -60,6 +60,7 @@ class SigninViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signinBtn.layer.cornerRadius = 15.0
+        emailSigninView.layer.cornerRadius = 15.0
     }
     //MARK: - actions
     @IBAction func didPressSocailSignin(_ sender: Any) {
